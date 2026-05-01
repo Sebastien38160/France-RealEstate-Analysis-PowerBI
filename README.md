@@ -22,15 +22,15 @@ L'objectif est de permettre aux investisseurs, professionnels de l'immobilier et
 
 | **Accueil** | **Analyse des Ventes** |
 | :---: | :---: |
-| ![Accueil](images/01_home.png) | ![Ventes](images/02_sales.png) |
+| ![Accueil](01_home.png.png) | ![Ventes](02_sales.png.png) |
 
 | **Transactions** | **Vacance Immobilière** |
 | :---: | :---: |
-| ![Transactions](images/03_transactions.png) | ![Vacance](images/04_vacancy.png) |
+| ![Transactions](03_transactions.png.png) | ![Vacance](04_vacancy.png.png) |
 
 | **Économie** | **Modèle de Données** |
 | :---: | :---: |
-| ![Economie](images/05_economy.png) | ![Modele](images/06_model.png) |
+| ![Economie](05_economy.png.png) | ![Modele](06_model.png.png) |
 
 ---
 
