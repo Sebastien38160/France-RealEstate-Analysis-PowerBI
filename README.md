@@ -16,22 +16,21 @@ L'objectif est de permettre aux investisseurs, professionnels de l'immobilier et
 
 ---
 
-## 🖼️ Aperçu des Modules du Rapport
+# 🏠 Mon Projet Power BI Immobilier
 
-| **Page d'Accueil** | **Analyse des Ventes** |
+## 🖼️ Aperçu du Rapport
+
+| **Accueil** | **Analyse des Ventes** |
 | :---: | :---: |
 | ![Accueil](images/01_home.png) | ![Ventes](images/02_sales.png) |
-| *Navigation centralisée et intuitive* | *Pilotage du CA, des volumes et cartographie* |
 
-| **Détails des Transactions** | **Vacance Immobilière** |
+| **Transactions** | **Vacance Immobilière** |
 | :---: | :---: |
 | ![Transactions](images/03_transactions.png) | ![Vacance](images/04_vacancy.png) |
-| *Analyse granulaire et infobulles dynamiques* | *Monitoring de la tension territoriale* |
 
-| **Indicateurs Économiques** | **Modélisation Technique** |
+| **Économie** | **Modèle de Données** |
 | :---: | :---: |
 | ![Economie](images/05_economy.png) | ![Modele](images/06_model.png) |
-| *Corrélation Prix / Revenus fiscaux* | *Schéma en étoile (Modèle de données)* |
 
 ---
 
