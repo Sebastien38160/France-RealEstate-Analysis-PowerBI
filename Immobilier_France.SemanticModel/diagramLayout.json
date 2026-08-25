@@ -1,0 +1,218 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 845.608554414588,
+            "y": 463.85714285714289
+          },
+          "nodeIndex": "Fait_Ventes",
+          "nodeLineageTag": "f2af1acd-0cc6-4f46-84eb-86f4fbba933a",
+          "size": {
+            "height": 441,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1415.2058717014879,
+            "y": 1.4285714285714306
+          },
+          "nodeIndex": "Mesures",
+          "nodeLineageTag": "9cea211c-ef31-4708-97af-a2df1b78f37b",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 2,
+          "expandedHeight": 399
+        },
+        {
+          "location": {
+            "x": 1134.751411557445,
+            "y": 14.285714285714292
+          },
+          "nodeIndex": "Dim IRL",
+          "nodeLineageTag": "d9415727-db93-4400-b261-83745b40e9fd",
+          "size": {
+            "height": 149,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 749.56859273594671,
+            "y": 4.2857142857142847
+          },
+          "nodeIndex": "Dim Date",
+          "nodeLineageTag": "9dc89475-3cc4-4209-b5e6-227e425736ed",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 302.42857142857139,
+            "y": 472.71428571428578
+          },
+          "nodeIndex": "Fait Loyers",
+          "nodeLineageTag": "27d531a0-7270-4ffd-9219-d1d9950807a6",
+          "size": {
+            "height": 250,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 578.46569727173062,
+            "y": 463
+          },
+          "nodeIndex": "Fait Foyers Fiscaux",
+          "nodeLineageTag": "148815c3-3c95-4841-98c7-da89033a9dc1",
+          "size": {
+            "height": 267,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1130.4656972717307,
+            "y": 467.87965092148346
+          },
+          "nodeIndex": "Fait taux_interet",
+          "nodeLineageTag": "82d12657-6147-421f-aa0b-c4e3c3e40d53",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1701.4285714285713,
+            "y": 466.79614012639263
+          },
+          "nodeIndex": "Fait taux_endettement",
+          "nodeLineageTag": "1ff3a428-751e-45ee-901d-77112dafdcb0",
+          "size": {
+            "height": 150,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 467.42857142857144
+          },
+          "nodeIndex": "Fait parc_immobilier",
+          "nodeLineageTag": "48a01722-5e81-4267-ae44-bee68db702f9",
+          "size": {
+            "height": 251,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1428.1799829860165,
+            "y": 471.42857142857144
+          },
+          "nodeIndex": "Fait Emprunts",
+          "nodeLineageTag": "9de1f851-b409-40fd-b98d-181e142cce87",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1416.8339040465012,
+            "y": 89.204274629150063
+          },
+          "nodeIndex": "Mesure sélectionner",
+          "nodeLineageTag": "8a9614a6-88aa-4cf9-9026-e36d09ab20e3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1664.4996722405713,
+            "y": 0
+          },
+          "nodeIndex": "Mesure sélectionner2",
+          "nodeLineageTag": "1c8d9238-0d9d-4e89-bf87-d2c86da812ee",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1921.4915859872024,
+            "y": 0
+          },
+          "nodeIndex": "Paramètre",
+          "nodeLineageTag": "ca92015a-34c2-45a6-9597-07ede95a907e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 419.42691487950145,
+            "y": 0
+          },
+          "nodeIndex": "Dim Départements",
+          "nodeLineageTag": "ac0c607d-a449-4afb-be05-24625858fa7e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 40,
+            "y": 0
+          },
+          "nodeIndex": "Dim Géographie",
+          "nodeLineageTag": "4c089f19-59ca-491d-813c-a3fd9a70ed42",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toutes les tables",
+  "defaultDiagram": "Toutes les tables"
+}

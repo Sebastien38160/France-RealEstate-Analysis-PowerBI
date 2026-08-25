@@ -1,0 +1,5699 @@
+cultureInfo fr-FR
+
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "fait_vente": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait vente": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Fait_Ventes": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.ID_transaction": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "ID Transaction"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ID transaction": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "transaction": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "identification transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "identity transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "identifier transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "credential transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "id operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "id deal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "id business": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "id contract": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "id matter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.date_transaction": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Date Transaction"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date transaction": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "transaction": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period transaction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "date operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "date deal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date business": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date contract": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "date matter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "deal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "business": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fait_vente.prix": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Prix"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prix": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.département": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Département"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "département": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.ville": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Ville"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "ville": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.code_postal": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Code Postal"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "code postal": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "id postal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "key postal": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.adresse": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Adresse"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "adresse": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.type_batiment": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Type Batiment"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "type batiment": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "category batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "genre batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "manner batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "variety batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "brand batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "class batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "kind batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "style batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "form batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "grouping batiment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.vefa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "vefa"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vefa": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.nombres_piéce": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Nombres Piéces"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombres piéce": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nombre piéce": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.surface_habitable": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Surface Habitable"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "surface habitable": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "facade habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "façade habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "exterior habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "shell habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "side habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "top habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "outside habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "plane habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "face habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.ID_parcelle_cadastre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "ID Parcelle Cadastre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ID parcelle cadastre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "identification parcelle cadastre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "identity parcelle cadastre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "identifier parcelle cadastre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "credential parcelle cadastre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.latitude": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Latitude"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "latitude": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "leeway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "freedom": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "autonomy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "liberty": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "opportunity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "room": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "scope": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "space": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "rope": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        }
+			      ]
+			    },
+			    "fait_vente.longitude": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait_Ventes",
+			          "ConceptualProperty": "Longitude"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "longitude": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Foyers Fiscaux"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait foyers fiscaux": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "fait foyer fiscaux": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Foyers Fiscaux",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux.n_foyers_fiscaux": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Foyers Fiscaux",
+			          "ConceptualProperty": "n_foyers_fiscaux"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "n foyers fiscaux": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "n foyer fiscaux": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "n_foyers_fiscaux": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux.revenu_fiscal_moyen": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Foyers Fiscaux",
+			          "ConceptualProperty": "revenu_fiscal_moyen"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "revenu fiscal moyen": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "revenu_fiscal_moyen": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux.montant_impot_moyen": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Foyers Fiscaux",
+			          "ConceptualProperty": "montant_impot_moyen"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "montant impot moyen": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "montant_impot_moyen": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "dim_IRL": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim IRL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim IRL": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "dim_IRL.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim IRL",
+			          "ConceptualProperty": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date": {
+			            "Type": "Noun",
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "dim_IRL.irl": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim IRL",
+			          "ConceptualProperty": "IRL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "irl": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_loyer": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Loyers"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait loyer": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_loyer.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Loyers",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date": {
+			            "Type": "Noun",
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fait_loyer.loyer_m_2_appartement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Loyers",
+			          "ConceptualProperty": "loyer_m2_appartement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer m 2 appartement": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer_m2_appartement": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_loyer.loyer_m_2_maison": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Loyers",
+			          "ConceptualProperty": "loyer_m2_maison"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer m 2 maison": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer_m2_maison": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_loyer.loyer_moyen_global": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Loyers",
+			          "ConceptualProperty": "Loyer Moyen Global"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer moyen global": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait parc_immobilier"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait parc_immobilier": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait parc_immobilier",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.surface_habitable": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Surface Habitable"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "surface habitable": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "facade habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "façade habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "exterior habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "shell habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "side habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "top habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "outside habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "plane habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "face habitable": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.couleur_evolution_prix_m2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Couleur Evolution Prix m2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "couleur evolution prix m2": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier.n_logements_vacant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait parc_immobilier",
+			          "ConceptualProperty": "n_logements_vacants"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "n logements vacant": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "n logement vacant": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "n_logements_vacants": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "Nombres Logements Vacants": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_endettement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait taux_endettement": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_endettement",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fait_taux_endettement.taux_endettement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_endettement",
+			          "ConceptualProperty": "taux_endettement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "taux endettement": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "taux_endettement": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "fait_taux_interet": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_interet"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait taux_interet": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_taux_interet.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_interet",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date": {
+			            "Type": "Noun",
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fait_taux_interet.taux": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait taux_interet",
+			          "ConceptualProperty": "taux"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "taux": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_emprunt": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Emprunts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fait emprunt": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fait_emprunt.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Emprunts",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fait_emprunt.emprunts_M": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fait Emprunts",
+			          "ConceptualProperty": "emprunts_M€"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "emprunts_M€": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dim moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "dim period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "ConceptualProperty": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "dim_date.date.hiérarchie_de_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "VariationSource": "Date",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hiérarchie de dates"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hiérarchie de date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hiérarchie de moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hiérarchie de period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date.année": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "VariationSource": "Date",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hiérarchie de dates",
+			          "HierarchyLevel": "Année"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "année": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date année": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment année": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period année": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "VariationSource": "Date",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hiérarchie de dates",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date.mois": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "VariationSource": "Date",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hiérarchie de dates",
+			          "HierarchyLevel": "Mois"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mois": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date mois": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment mois": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period mois": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date.jour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "VariationSource": "Date",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hiérarchie de dates",
+			          "HierarchyLevel": "Jour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "jour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date jour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment jour": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period jour": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.année": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "ConceptualProperty": "Année"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "année": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.mois_num": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "ConceptualProperty": "Mois Num"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mois num": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mois number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.nom_mois": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "ConceptualProperty": "Nom Mois"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nom mois": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim Date",
+			          "ConceptualProperty": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mesure": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.surface_habitable_moyenne": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Surface Habitable Moyenne"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "surface habitable moyenne": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.prix_moyen": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Prix Moyen"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prix moyen": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.nombres_ventes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Nombres Ventes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombres ventes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.emprunt_moyen": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Emprunt Moyen"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "emprunt moyen": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.montant_impot_moyen": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Montant Impot Moyen"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "montant impot moyen": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.nombre_foyer_fiscaux": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Nombre Foyer Fiscaux"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombre foyer fiscaux": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.moyenne_IRL": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Moyenne IRL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "moyenne IRL": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_max_m2_appartement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Max m2 Appartement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer max m2 appartement": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer maximum m2 appartement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_max_m2_maison": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Max m2 Maison"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer max m2 maison": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer maximum m2 maison": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_min_m2_appartement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Min m2 Appartement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer min m2 appartement": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer minimum m2 appartement": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_min_m2_maison": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Min m2 Maison"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer min m2 maison": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "loyer minimum m2 maison": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_moyen_m2_appartement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Moyen m2 Appartement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer moyen m2 appartement": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.loyer_moyen_m2_maison": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Loyer Moyen m2 Maison"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "loyer moyen m2 maison": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.prix_moyen_m2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Prix Moyen m2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "prix moyen m2": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.moyenne_taux_endettement_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Moyenne Taux Endettement %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "moyenne taux endettement %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moyenne taux endettement percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "moyenne taux endettement pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.moyenne_taux_interet": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Moyenne Taux Interet"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "moyenne taux interet": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.moyenne_logement_vacant": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Moyenne Logement Vacant"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "moyenne logement vacant": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.evolution_prix_m2_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Evolution Prix m2 %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "evolution prix m2 %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "evolution prix m2 percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "evolution prix m2 pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.moyenne_taux_interet_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Moyenne Taux Interet %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "moyenne taux interet %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moyenne taux interet percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "moyenne taux interet pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.CA_total": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "CA Total"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CA total": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ca aggregate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "ca overall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.couleur_dynamique": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Couleur Dynamique"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "couleur dynamique": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.liste_des_valeurs_de_région": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Liste des valeurs de Région"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "liste des valeurs de région": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.liste_des_valeurs_de_nom_département": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Liste des valeurs de Nom Département"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "liste des valeurs de nom département": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.titre_dynamique_complet": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "Titre Dynamique Complet"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "titre dynamique complet": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mesure sélectionner": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner.mesure_sélectionner": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner",
+			          "ConceptualProperty": "Mesure sélectionner"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mesure sélectionner": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mesure sélectionner name": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "mesure_sélectionner.mesure_sélectionner_champs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner",
+			          "ConceptualProperty": "Mesure sélectionner Champs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "mesure sélectionner champs": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mesure sélectionner winner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner victor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner titleholder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner champion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner.mesure_sélectionner_commande": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner",
+			          "ConceptualProperty": "Mesure sélectionner Commande"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "mesure sélectionner commande": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mesure sélectionner2": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner2.mesure_sélectionner2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner2",
+			          "ConceptualProperty": "Mesure sélectionner2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mesure sélectionner2": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mesure sélectionner2 name": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "mesure_sélectionner2.mesure_sélectionner2_champs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner2",
+			          "ConceptualProperty": "Mesure sélectionner2 Champs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "mesure sélectionner2 champs": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mesure sélectionner2 winner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner2 victor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner2 titleholder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "mesure sélectionner2 champion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner2.mesure_sélectionner2_commande": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesure sélectionner2",
+			          "ConceptualProperty": "Mesure sélectionner2 Commande"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "mesure sélectionner2 commande": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "paramètre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Paramètre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "paramètre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "paramètre.paramètre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Paramètre",
+			          "ConceptualProperty": "Paramètre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "paramètre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "paramètre name": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "paramètre.paramètre_champs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Paramètre",
+			          "ConceptualProperty": "Paramètre Champs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "paramètre champs": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "paramètre winner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "paramètre victor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "paramètre titleholder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "paramètre champion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "paramètre.paramètre_commande": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Paramètre",
+			          "ConceptualProperty": "Paramètre Commande"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "paramètre commande": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "dim_date_date_has_hiérarchie_de_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date": {
+			          "Target": {
+			            "Entity": "dim_date.date"
+			          }
+			        },
+			        "dim_date.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "dim_date.date.hiérarchie_de_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.hiérarchie_de_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dates_have_hiérarchie_de_dates"
+			        }
+			      ]
+			    },
+			    "fait_emprunt_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Emprunts"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_emprunt": {
+			          "Target": {
+			            "Entity": "fait_emprunt"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_emprunt"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_emprunts_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_emprunt"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_emprunts"
+			        }
+			      ]
+			    },
+			    "fait_taux_interet_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_interet"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_interet": {
+			          "Target": {
+			            "Entity": "fait_taux_interet"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_interet"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_interets_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_taux_interet"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_taux_interets"
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_endettement"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_endettement": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_endettement"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_endettements_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_taux_endettement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_taux_endettements"
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait parc_immobilier"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_parc_immobilier": {
+			          "Target": {
+			            "Entity": "fait_parc_immobilier"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_parc_immobilier"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_parc_immobiliers_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_parc_immobilier"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_parc_immobiliers"
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier_has_dim_géographie": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait parc_immobilier"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_parc_immobilier": {
+			          "Target": {
+			            "Entity": "fait_parc_immobilier"
+			          }
+			        },
+			        "dim_géographie": {
+			          "Target": {
+			            "Entity": "dim_géographie"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_parc_immobilier"
+			            },
+			            "Object": {
+			              "Role": "dim_géographie"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_parc_immobiliers_have_dim_géographies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_géographie"
+			            },
+			            "Object": {
+			              "Role": "fait_parc_immobilier"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_géographies_have_fait_parc_immobiliers"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_loyers"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_dim_géographie": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "dim_géographie": {
+			          "Target": {
+			            "Entity": "dim_géographie"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "dim_géographie"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_dim_géographies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_géographie"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_géographies_have_fait_loyers"
+			        }
+			      ]
+			    },
+			    "dim_IRL_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim IRL"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_IRL": {
+			          "Target": {
+			            "Entity": "dim_IRL"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_IRL"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_IRLs_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_IRL"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_dim_IRLs"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_foyers_fiscaux"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_foyers_fiscauxes"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_dim_géographie": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "dim_géographie": {
+			          "Target": {
+			            "Entity": "dim_géographie"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "dim_géographie"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_dim_géographies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_géographie"
+			            },
+			            "Object": {
+			              "Role": "fait_foyers_fiscaux"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_géographies_have_fait_foyers_fiscauxes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_dim_géographie": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "dim_géographie": {
+			          "Target": {
+			            "Entity": "dim_géographie"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "dim_géographie"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_dim_géographies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_géographie"
+			            },
+			            "Object": {
+			              "Role": "fait_vente"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_géographies_have_fait_ventes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          },
+			          "Nouns": [
+			            {
+			              "date transaction": {
+			                "State": "Generated"
+			              }
+			            },
+			            {
+			              "transaction": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fait_vente"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fait_ventes"
+			        }
+			      ]
+			    },
+			    "paramètre_has_paramètre": {
+			      "Binding": {
+			        "ConceptualEntity": "Paramètre"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "paramètre": {
+			          "Target": {
+			            "Entity": "paramètre"
+			          }
+			        },
+			        "paramètre.paramètre": {
+			          "Target": {
+			            "Entity": "paramètre.paramètre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "paramètre"
+			            },
+			            "Object": {
+			              "Role": "paramètre.paramètre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "paramètres_have_paramètres"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "paramètre"
+			            },
+			            "Name": {
+			              "Role": "paramètre.paramètre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "paramètres_are_names_IDs_of_paramètres"
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner2_has_mesure_sélectionner2": {
+			      "Binding": {
+			        "ConceptualEntity": "Mesure sélectionner2"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mesure_sélectionner2": {
+			          "Target": {
+			            "Entity": "mesure_sélectionner2"
+			          }
+			        },
+			        "mesure_sélectionner2.mesure_sélectionner2": {
+			          "Target": {
+			            "Entity": "mesure_sélectionner2.mesure_sélectionner2"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mesure_sélectionner2"
+			            },
+			            "Object": {
+			              "Role": "mesure_sélectionner2.mesure_sélectionner2"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mesure_sélectionner2_have_mesure_sélectionner2"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "mesure_sélectionner2"
+			            },
+			            "Name": {
+			              "Role": "mesure_sélectionner2.mesure_sélectionner2"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mesure_sélectionner2_are_names_IDs_of_mesure_sélectionner2"
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner_has_mesure_sélectionner": {
+			      "Binding": {
+			        "ConceptualEntity": "Mesure sélectionner"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mesure_sélectionner": {
+			          "Target": {
+			            "Entity": "mesure_sélectionner"
+			          }
+			        },
+			        "mesure_sélectionner.mesure_sélectionner": {
+			          "Target": {
+			            "Entity": "mesure_sélectionner.mesure_sélectionner"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mesure_sélectionner"
+			            },
+			            "Object": {
+			              "Role": "mesure_sélectionner.mesure_sélectionner"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mesure_sélectionners_have_mesure_sélectionners"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "mesure_sélectionner"
+			            },
+			            "Name": {
+			              "Role": "mesure_sélectionner.mesure_sélectionner"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mesure_sélectionners_are_names_IDs_of_mesure_sélectionners"
+			        }
+			      ]
+			    },
+			    "mesure_sélectionner_has_mesure_couleur_dynamique": {
+			      "Binding": {
+			        "ConceptualEntity": "Mesure sélectionner"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mesure_sélectionner": {
+			          "Target": {
+			            "Entity": "mesure_sélectionner"
+			          }
+			        },
+			        "mesure.couleur_dynamique": {
+			          "Target": {
+			            "Entity": "mesure.couleur_dynamique"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mesure_sélectionner"
+			            },
+			            "Object": {
+			              "Role": "mesure.couleur_dynamique"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mesure_sélectionners_have_couleur_dynamique"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_CA_total": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.CA_total": {
+			          "Target": {
+			            "Entity": "mesure.CA_total"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.CA_total"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_CA_total"
+			        }
+			      ]
+			    },
+			    "fait_taux_interet_has_mesure_moyenne_taux_interet_": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_interet"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_interet": {
+			          "Target": {
+			            "Entity": "fait_taux_interet"
+			          }
+			        },
+			        "mesure.moyenne_taux_interet_": {
+			          "Target": {
+			            "Entity": "mesure.moyenne_taux_interet_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_interet"
+			            },
+			            "Object": {
+			              "Role": "mesure.moyenne_taux_interet_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_interets_have_moyenne_taux_interet_"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_evolution_prix_m2_": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.evolution_prix_m2_": {
+			          "Target": {
+			            "Entity": "mesure.evolution_prix_m2_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.evolution_prix_m2_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_evolution_prix_m2_"
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier_has_mesure_moyenne_logement_vacant": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait parc_immobilier"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_parc_immobilier": {
+			          "Target": {
+			            "Entity": "fait_parc_immobilier"
+			          }
+			        },
+			        "mesure.moyenne_logement_vacant": {
+			          "Target": {
+			            "Entity": "mesure.moyenne_logement_vacant"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_parc_immobilier"
+			            },
+			            "Object": {
+			              "Role": "mesure.moyenne_logement_vacant"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_parc_immobiliers_have_moyenne_logement_vacant"
+			        }
+			      ]
+			    },
+			    "fait_taux_interet_has_mesure_moyenne_taux_interet": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_interet"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_interet": {
+			          "Target": {
+			            "Entity": "fait_taux_interet"
+			          }
+			        },
+			        "mesure.moyenne_taux_interet": {
+			          "Target": {
+			            "Entity": "mesure.moyenne_taux_interet"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_interet"
+			            },
+			            "Object": {
+			              "Role": "mesure.moyenne_taux_interet"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_interets_have_moyenne_taux_interet"
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement_has_mesure_moyenne_taux_endettement_": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_endettement"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_endettement": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement"
+			          }
+			        },
+			        "mesure.moyenne_taux_endettement_": {
+			          "Target": {
+			            "Entity": "mesure.moyenne_taux_endettement_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_endettement"
+			            },
+			            "Object": {
+			              "Role": "mesure.moyenne_taux_endettement_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_endettements_have_moyenne_taux_endettement_"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_prix_moyen_m2": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.prix_moyen_m2": {
+			          "Target": {
+			            "Entity": "mesure.prix_moyen_m2"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.prix_moyen_m2"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_prix_moyen_m2"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_moyen_m2_maison": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_moyen_m2_maison": {
+			          "Target": {
+			            "Entity": "mesure.loyer_moyen_m2_maison"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_moyen_m2_maison"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_moyen_m2_maison"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_moyen_m2_appartement": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_moyen_m2_appartement": {
+			          "Target": {
+			            "Entity": "mesure.loyer_moyen_m2_appartement"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_moyen_m2_appartement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_moyen_m2_appartement"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_min_m2_maison": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_min_m2_maison": {
+			          "Target": {
+			            "Entity": "mesure.loyer_min_m2_maison"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_min_m2_maison"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_min_m2_maison"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_min_m2_appartement": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_min_m2_appartement": {
+			          "Target": {
+			            "Entity": "mesure.loyer_min_m2_appartement"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_min_m2_appartement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_min_m2_appartement"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_max_m2_maison": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_max_m2_maison": {
+			          "Target": {
+			            "Entity": "mesure.loyer_max_m2_maison"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_max_m2_maison"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_max_m2_maison"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_mesure_loyer_max_m2_appartement": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "mesure.loyer_max_m2_appartement": {
+			          "Target": {
+			            "Entity": "mesure.loyer_max_m2_appartement"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "mesure.loyer_max_m2_appartement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_max_m2_appartement"
+			        }
+			      ]
+			    },
+			    "dim_IRL_has_mesure_moyenne_IRL": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim IRL"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_IRL": {
+			          "Target": {
+			            "Entity": "dim_IRL"
+			          }
+			        },
+			        "mesure.moyenne_IRL": {
+			          "Target": {
+			            "Entity": "mesure.moyenne_IRL"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_IRL"
+			            },
+			            "Object": {
+			              "Role": "mesure.moyenne_IRL"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_IRLs_have_moyenne_IRL"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_mesure_nombre_foyer_fiscaux": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "mesure.nombre_foyer_fiscaux": {
+			          "Target": {
+			            "Entity": "mesure.nombre_foyer_fiscaux"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "mesure.nombre_foyer_fiscaux"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_nombre_foyer_fiscaux"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_mesure_montant_impot_moyen": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "mesure.montant_impot_moyen": {
+			          "Target": {
+			            "Entity": "mesure.montant_impot_moyen"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "mesure.montant_impot_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_montant_impot_moyen"
+			        }
+			      ]
+			    },
+			    "fait_emprunt_has_mesure_emprunt_moyen": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Emprunts"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_emprunt": {
+			          "Target": {
+			            "Entity": "fait_emprunt"
+			          }
+			        },
+			        "mesure.emprunt_moyen": {
+			          "Target": {
+			            "Entity": "mesure.emprunt_moyen"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_emprunt"
+			            },
+			            "Object": {
+			              "Role": "mesure.emprunt_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_emprunts_have_emprunt_moyen"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_nombres_ventes": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.nombres_ventes": {
+			          "Target": {
+			            "Entity": "mesure.nombres_ventes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.nombres_ventes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_nombres_ventes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_prix_moyen": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.prix_moyen": {
+			          "Target": {
+			            "Entity": "mesure.prix_moyen"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.prix_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_prix_moyen"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_surface_habitable_moyenne": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.surface_habitable_moyenne": {
+			          "Target": {
+			            "Entity": "mesure.surface_habitable_moyenne"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.surface_habitable_moyenne"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_surface_habitable_moyenne"
+			        }
+			      ]
+			    },
+			    "dim_date_has_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.trimestre": {
+			          "Target": {
+			            "Entity": "dim_date.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_trimestres"
+			        }
+			      ]
+			    },
+			    "dim_date_has_nom_mois": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.nom_mois": {
+			          "Target": {
+			            "Entity": "dim_date.nom_mois"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.nom_mois"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_nom_moises"
+			        }
+			      ]
+			    },
+			    "dim_date_has_mois_num": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.mois_num": {
+			          "Target": {
+			            "Entity": "dim_date.mois_num"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.mois_num"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_mois_nums"
+			        }
+			      ]
+			    },
+			    "dim_date_has_année": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.année": {
+			          "Target": {
+			            "Entity": "dim_date.année"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.année"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_années"
+			        }
+			      ]
+			    },
+			    "dim_date_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.date": {
+			          "Target": {
+			            "Entity": "dim_date.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_dates"
+			        }
+			      ]
+			    },
+			    "fait_emprunt_has_emprunts_M": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Emprunts"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_emprunt": {
+			          "Target": {
+			            "Entity": "fait_emprunt"
+			          }
+			        },
+			        "fait_emprunt.emprunts_M": {
+			          "Target": {
+			            "Entity": "fait_emprunt.emprunts_M"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_emprunt"
+			            },
+			            "Object": {
+			              "Role": "fait_emprunt.emprunts_M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_emprunts_have_emprunts_M"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "fait_emprunt"
+			            },
+			            "Adjectives": [
+			              {
+			                "expensive": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "cheap": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "fait_emprunt.emprunts_M"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "emprunts_M_indicates_how_expensive_fait_emprunts_are"
+			        }
+			      ]
+			    },
+			    "fait_emprunt_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Emprunts"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_emprunt": {
+			          "Target": {
+			            "Entity": "fait_emprunt"
+			          }
+			        },
+			        "fait_emprunt.date": {
+			          "Target": {
+			            "Entity": "fait_emprunt.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_emprunt"
+			            },
+			            "Object": {
+			              "Role": "fait_emprunt.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_emprunts_have_dates"
+			        }
+			      ]
+			    },
+			    "fait_taux_interet_has_taux": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_interet"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_interet": {
+			          "Target": {
+			            "Entity": "fait_taux_interet"
+			          }
+			        },
+			        "fait_taux_interet.taux": {
+			          "Target": {
+			            "Entity": "fait_taux_interet.taux"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_interet"
+			            },
+			            "Object": {
+			              "Role": "fait_taux_interet.taux"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_interets_have_tauxes"
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement_has_taux_endettement": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_endettement"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_endettement": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement"
+			          }
+			        },
+			        "fait_taux_endettement.taux_endettement": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement.taux_endettement"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_endettement"
+			            },
+			            "Object": {
+			              "Role": "fait_taux_endettement.taux_endettement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_endettements_have_taux_endettements"
+			        }
+			      ]
+			    },
+			    "fait_taux_endettement_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait taux_endettement"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_taux_endettement": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement"
+			          }
+			        },
+			        "fait_taux_endettement.date": {
+			          "Target": {
+			            "Entity": "fait_taux_endettement.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_taux_endettement"
+			            },
+			            "Object": {
+			              "Role": "fait_taux_endettement.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_taux_endettements_have_dates"
+			        }
+			      ]
+			    },
+			    "fait_parc_immobilier_has_n_logements_vacant": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait parc_immobilier"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_parc_immobilier": {
+			          "Target": {
+			            "Entity": "fait_parc_immobilier"
+			          }
+			        },
+			        "fait_parc_immobilier.n_logements_vacant": {
+			          "Target": {
+			            "Entity": "fait_parc_immobilier.n_logements_vacant"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_parc_immobilier"
+			            },
+			            "Object": {
+			              "Role": "fait_parc_immobilier.n_logements_vacant"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_parc_immobiliers_have_n_logements_vacant"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_couleur_evolution_prix_m2": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.couleur_evolution_prix_m2": {
+			          "Target": {
+			            "Entity": "mesure.couleur_evolution_prix_m2"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.couleur_evolution_prix_m2"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_couleur_evolution_prix_m2"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_mesure_surface_habitable": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "mesure.surface_habitable": {
+			          "Target": {
+			            "Entity": "mesure.surface_habitable"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "mesure.surface_habitable"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_surface_habitable"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_fait_loyer_loyer_moyen_global": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_loyer.loyer_moyen_global": {
+			          "Target": {
+			            "Entity": "fait_loyer.loyer_moyen_global"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer.loyer_moyen_global"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_loyer_moyen_global"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_loyer_moyen_global": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "fait_loyer.loyer_moyen_global": {
+			          "Target": {
+			            "Entity": "fait_loyer.loyer_moyen_global"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer.loyer_moyen_global"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_moyen_global"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_loyer_m_2_maison": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "fait_loyer.loyer_m_2_maison": {
+			          "Target": {
+			            "Entity": "fait_loyer.loyer_m_2_maison"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer.loyer_m_2_maison"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_m_2_maison"
+			        }
+			      ]
+			    },
+			    "fait_loyer_has_loyer_m_2_appartement": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Loyers"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_loyer": {
+			          "Target": {
+			            "Entity": "fait_loyer"
+			          }
+			        },
+			        "fait_loyer.loyer_m_2_appartement": {
+			          "Target": {
+			            "Entity": "fait_loyer.loyer_m_2_appartement"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_loyer"
+			            },
+			            "Object": {
+			              "Role": "fait_loyer.loyer_m_2_appartement"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_loyers_have_loyer_m_2_appartements"
+			        }
+			      ]
+			    },
+			    "dim_IRL_has_irl": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim IRL"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_IRL": {
+			          "Target": {
+			            "Entity": "dim_IRL"
+			          }
+			        },
+			        "dim_IRL.irl": {
+			          "Target": {
+			            "Entity": "dim_IRL.irl"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_IRL"
+			            },
+			            "Object": {
+			              "Role": "dim_IRL.irl"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_IRLs_have_irls"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_montant_impot_moyen": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "fait_foyers_fiscaux.montant_impot_moyen": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux.montant_impot_moyen"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "fait_foyers_fiscaux.montant_impot_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_montant_impot_moyens"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_revenu_fiscal_moyen": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "fait_foyers_fiscaux.revenu_fiscal_moyen": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux.revenu_fiscal_moyen"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "fait_foyers_fiscaux.revenu_fiscal_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_revenu_fiscal_moyens"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Adjectives": [
+			              {
+			                "expensive": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Antonyms": [
+			              {
+			                "cheap": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "fait_foyers_fiscaux.revenu_fiscal_moyen"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "revenu_fiscal_moyen_indicates_how_expensive_fait_foyers_fiscauxes_are"
+			        }
+			      ]
+			    },
+			    "fait_foyers_fiscaux_has_n_foyers_fiscaux": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait Foyers Fiscaux"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux"
+			          }
+			        },
+			        "fait_foyers_fiscaux.n_foyers_fiscaux": {
+			          "Target": {
+			            "Entity": "fait_foyers_fiscaux.n_foyers_fiscaux"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_foyers_fiscaux"
+			            },
+			            "Object": {
+			              "Role": "fait_foyers_fiscaux.n_foyers_fiscaux"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_foyers_fiscauxes_have_n_foyers_fiscauxes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_longitude": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.longitude": {
+			          "Target": {
+			            "Entity": "fait_vente.longitude"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.longitude"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_longitudes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_latitude": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.latitude": {
+			          "Target": {
+			            "Entity": "fait_vente.latitude"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.latitude"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_latitudes"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_ID_parcelle_cadastre": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.ID_parcelle_cadastre": {
+			          "Target": {
+			            "Entity": "fait_vente.ID_parcelle_cadastre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.ID_parcelle_cadastre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_ID_parcelle_cadastres"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_surface_habitable": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.surface_habitable": {
+			          "Target": {
+			            "Entity": "fait_vente.surface_habitable"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.surface_habitable"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_surface_habitable1"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_nombres_piéce": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.nombres_piéce": {
+			          "Target": {
+			            "Entity": "fait_vente.nombres_piéce"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.nombres_piéce"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_nombres_piéces"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_vefa": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.vefa": {
+			          "Target": {
+			            "Entity": "fait_vente.vefa"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.vefa"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_vefas"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_type_batiment": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.type_batiment": {
+			          "Target": {
+			            "Entity": "fait_vente.type_batiment"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.type_batiment"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_type_batiments"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_adresse": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.adresse": {
+			          "Target": {
+			            "Entity": "fait_vente.adresse"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.adresse"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_adresses"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_code_postal": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.code_postal": {
+			          "Target": {
+			            "Entity": "fait_vente.code_postal"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.code_postal"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_code_postal"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_prix": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.prix": {
+			          "Target": {
+			            "Entity": "fait_vente.prix"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.prix"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_prix"
+			        }
+			      ]
+			    },
+			    "fait_vente_has_ID_transaction": {
+			      "Binding": {
+			        "ConceptualEntity": "Fait_Ventes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fait_vente": {
+			          "Target": {
+			            "Entity": "fait_vente"
+			          }
+			        },
+			        "fait_vente.ID_transaction": {
+			          "Target": {
+			            "Entity": "fait_vente.ID_transaction"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fait_vente"
+			            },
+			            "Object": {
+			              "Role": "fait_vente.ID_transaction"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fait_ventes_have_ID_transactions"
+			        }
+			      ]
+			    },
+			    "dim_date_date_hiérarchie_de_date_has_dim_date_date_année": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "dim_date.date.hiérarchie_de_date"
+			          }
+			        },
+			        "dim_date.date.année": {
+			          "Target": {
+			            "Entity": "dim_date.date.année"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.hiérarchie_de_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.année"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hiérarchie_de_dates_have_années"
+			        }
+			      ]
+			    },
+			    "dim_date_date_hiérarchie_de_date_has_dim_date_date_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "dim_date.date.hiérarchie_de_date"
+			          }
+			        },
+			        "dim_date.date.trimestre": {
+			          "Target": {
+			            "Entity": "dim_date.date.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.hiérarchie_de_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hiérarchie_de_dates_have_trimestres"
+			        }
+			      ]
+			    },
+			    "dim_date_date_hiérarchie_de_date_has_dim_date_date_mois": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "dim_date.date.hiérarchie_de_date"
+			          }
+			        },
+			        "dim_date.date.mois": {
+			          "Target": {
+			            "Entity": "dim_date.date.mois"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.hiérarchie_de_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.mois"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hiérarchie_de_dates_have_moises"
+			        }
+			      ]
+			    },
+			    "dim_date_date_hiérarchie_de_date_has_dim_date_date_jour": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "dim_date.date.hiérarchie_de_date"
+			          }
+			        },
+			        "dim_date.date.jour": {
+			          "Target": {
+			            "Entity": "dim_date.date.jour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.hiérarchie_de_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.jour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hiérarchie_de_dates_have_jour"
+			        }
+			      ]
+			    },
+			    "dim_date_date_année_has_dim_date_date_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.année": {
+			          "Target": {
+			            "Entity": "dim_date.date.année"
+			          }
+			        },
+			        "dim_date.date.trimestre": {
+			          "Target": {
+			            "Entity": "dim_date.date.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.année"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "années_have_trimestres"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.trimestre"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.année"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_années"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "dim_date.date.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "dim_date.date.année"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_années"
+			        }
+			      ]
+			    },
+			    "dim_date_date_trimestre_has_dim_date_date_mois": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.trimestre": {
+			          "Target": {
+			            "Entity": "dim_date.date.trimestre"
+			          }
+			        },
+			        "dim_date.date.mois": {
+			          "Target": {
+			            "Entity": "dim_date.date.mois"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.trimestre"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.mois"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_moises"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.mois"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "moises_have_trimestres"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "dim_date.date.mois"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "dim_date.date.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "moises_are_in_trimestres"
+			        }
+			      ]
+			    },
+			    "dim_date_date_mois_has_dim_date_date_jour": {
+			      "Binding": {
+			        "ConceptualEntity": "Dim Date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date.date.mois": {
+			          "Target": {
+			            "Entity": "dim_date.date.mois"
+			          }
+			        },
+			        "dim_date.date.jour": {
+			          "Target": {
+			            "Entity": "dim_date.date.jour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.mois"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.jour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "moises_have_jour"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date.date.jour"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date.mois"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "jour_have_moises"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "dim_date.date.jour"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "dim_date.date.mois"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "jour_are_in_moises"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

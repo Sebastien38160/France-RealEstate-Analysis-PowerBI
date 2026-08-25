@@ -1,0 +1,45 @@
+table 'Fait taux_interet'
+	lineageTag: 82d12657-6147-421f-aa0b-c4e3c3e40d53
+
+	column date
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yy
+		lineageTag: e2dcc72c-3ee8-48a8-aa59-7a369fb2941d
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column taux
+		dataType: double
+		lineageTag: eb6e6585-8428-48b7-8dcf-106f0490489b
+		summarizeBy: sum
+		sourceColumn: taux
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Fait taux_interet' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\taux_interet.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"date", type date}}),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Type modifié",".",",",Replacer.ReplaceText,{"taux"}),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Valeur remplacée",{{"taux", type number}})
+				in
+				    #"Type modifié1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

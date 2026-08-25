@@ -1,0 +1,46 @@
+table 'Dim IRL'
+	lineageTag: d9415727-db93-4400-b261-83745b40e9fd
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yy
+		lineageTag: 5bed6554-6112-4689-99bc-ea288b135aa7
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column IRL
+		dataType: double
+		lineageTag: 8d00dcfe-fc76-4738-8f5e-4f2cba9c5ddc
+		summarizeBy: sum
+		sourceColumn: IRL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Dim IRL' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\indice_reference_loyers.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"quarter", type date}, {"IRL", type text}}),
+				    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"Type modifié", {{"IRL", type number}}, "en-US"),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Type modifié avec paramètres régionaux",{{"quarter", type date}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié1",{{"quarter", "Date"}})
+				in
+				    #"Colonnes renommées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

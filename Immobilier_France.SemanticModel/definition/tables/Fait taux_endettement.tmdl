@@ -1,0 +1,44 @@
+table 'Fait taux_endettement'
+	lineageTag: 1ff3a428-751e-45ee-901d-77112dafdcb0
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 35a397b6-01d6-4dd2-8be5-d914de9d2272
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column taux_endettement
+		dataType: double
+		formatString: 0.00
+		lineageTag: fa1017e3-2c45-434e-b30f-ee0ba927bfb2
+		summarizeBy: sum
+		sourceColumn: taux_endettement
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	partition 'Fait taux_endettement' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\taux_endettement.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"En-têtes promus", {{"taux_endettement", type number}}, "en-US"),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Type modifié avec paramètres régionaux",{{"date", type date}})
+				in
+				    #"Type modifié"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

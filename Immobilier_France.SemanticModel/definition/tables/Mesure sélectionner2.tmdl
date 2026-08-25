@@ -1,0 +1,48 @@
+table 'Mesure sélectionner2'
+	lineageTag: 1c8d9238-0d9d-4e89-bf87-d2c86da812ee
+
+	column 'Mesure sélectionner2'
+		lineageTag: a8220e1b-a8ca-4078-a7e2-5c73742ba151
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Mesure sélectionner2 Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Mesure sélectionner2 Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mesure sélectionner2 Champs'
+		isHidden
+		lineageTag: 644097c6-7ea0-43ba-a7ca-eca2deb62253
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Mesure sélectionner2 Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mesure sélectionner2 Commande'
+		isHidden
+		formatString: 0
+		lineageTag: b91c71ec-11c4-4e5b-8c9a-bc3c98290da2
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Mesure sélectionner2' = calculated
+		mode: import
+		source =
+				{
+				    ("Prix Moyen m2", NAMEOF('Mesures'[Prix Moyen m2]), 0),
+				    ("Moyenne IRL", NAMEOF('Mesures'[Moyenne IRL]), 1)
+				}
+
+	annotation PBI_Id = 844761558b794f93947bc011bb887239
+

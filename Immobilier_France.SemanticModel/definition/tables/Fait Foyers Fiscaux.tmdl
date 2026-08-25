@@ -1,0 +1,71 @@
+table 'Fait Foyers Fiscaux'
+	lineageTag: 148815c3-3c95-4841-98c7-da89033a9dc1
+
+	column date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 18c3b6d0-9126-436e-8496-9a2be25935d2
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column n_foyers_fiscaux
+		dataType: int64
+		lineageTag: e58d0edf-1257-4dde-9356-55dac4d6bd9f
+		summarizeBy: sum
+		sourceColumn: n_foyers_fiscaux
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenu_fiscal_moyen
+		dataType: double
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: fa28adf1-3e31-45c0-be7a-8539d28446b8
+		summarizeBy: average
+		sourceColumn: revenu_fiscal_moyen
+
+		annotation SummarizationSetBy = User
+
+	column montant_impot_moyen
+		dataType: double
+		lineageTag: a54141a1-0ce2-4b94-8ae2-b26859a02e9c
+		summarizeBy: sum
+		sourceColumn: montant_impot_moyen
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Code INSEE'
+		dataType: string
+		lineageTag: 26e07ec3-a75f-44e0-a9f1-6cb63b7c8544
+		summarizeBy: none
+		sourceColumn: Code INSEE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fait Foyers Fiscaux' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\foyers_fiscaux.csv"),[Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Promu = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Txt = Table.TransformColumnTypes(Promu, {{"departement", type text},{"id_ville", type text},{"date", Int64.Type},{"n_foyers_fiscaux", Int64.Type}}),
+				    Nombres = Table.TransformColumnTypes(Txt, {{"revenu_fiscal_moyen", type number},{"montant_impot_moyen", type number}}, "en-US"),
+				    Code = Table.AddColumn(Nombres, "Code INSEE", each Text.Start(Text.PadStart([departement],2,"0"),2) & Text.PadStart([id_ville],3,"0"), type text),
+				    DateAnnee = Table.TransformColumns(Code, {{"date", each if _ = null then null else #date(_,1,1), type date}}),
+				    Nettoyage = Table.RemoveColumns(DateAnnee, {"departement","ville","id_ville","n_foyers_0k_10k","n_foyers_10k_12k","n_foyers_12k_15k","n_foyers_15k_20k","n_foyers_20k_30k","n_foyers_30k_50k","n_foyers_50k_100k","n_foyers_100k_plus"}),
+				    Valides = Table.SelectRows(Nettoyage, each [Code INSEE] <> null and [date] <> null)
+				in
+				    Valides
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

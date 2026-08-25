@@ -1,0 +1,51 @@
+table 'Mesure sélectionner'
+	lineageTag: 8a9614a6-88aa-4cf9-9026-e36d09ab20e3
+
+	column 'Mesure sélectionner'
+		lineageTag: a41f4713-c3ca-4faf-9369-31c177272222
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Mesure sélectionner Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Mesure sélectionner Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mesure sélectionner Champs'
+		isHidden
+		lineageTag: 791627ac-695a-4759-a71f-e8b086e33fec
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Mesure sélectionner Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mesure sélectionner Commande'
+		isHidden
+		formatString: 0
+		lineageTag: bdead296-2ca6-4804-90ec-04f6b9619271
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Mesure sélectionner' = calculated
+		mode: import
+		source = ```
+				{
+				    ("Nombres Ventes", NAMEOF('Mesures'[Nombres Ventes]), 0),
+				    ("Chiffre D'Affaire", NAMEOF('Mesures'[CA Total]), 1),
+				    ("Prix Moyen", NAMEOF('Mesures'[Prix Moyen]), 2)
+				    
+				}
+				```
+
+	annotation PBI_Id = 7614cb188dc548bbb43e7fe46302f087
+

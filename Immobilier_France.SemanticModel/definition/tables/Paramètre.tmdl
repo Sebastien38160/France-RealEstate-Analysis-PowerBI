@@ -1,0 +1,48 @@
+table Paramètre
+	lineageTag: ca92015a-34c2-45a6-9597-07ede95a907e
+
+	column Paramètre
+		lineageTag: 8808a528-91b3-41b9-b64e-51ceddedd2fe
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Paramètre Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Paramètre Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Champs'
+		isHidden
+		lineageTag: a12ae9aa-660c-4e7a-aebc-ff3c58aaf4aa
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Paramètre Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Commande'
+		isHidden
+		formatString: 0
+		lineageTag: a42db813-94fa-4529-9388-0db5ef1eda2f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Paramètre = calculated
+		mode: import
+		source =
+				{
+				    ("Nombres Ventes", NAMEOF('Mesures'[Nombres Ventes]), 0),
+				    ("Prix Moyen", NAMEOF('Mesures'[Prix Moyen]), 1)
+				}
+
+	annotation PBI_Id = 39ddf1dbb8cf45d6bd4761cb569fbb4c
+

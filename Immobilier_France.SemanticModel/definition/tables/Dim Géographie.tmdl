@@ -1,0 +1,80 @@
+table 'Dim Géographie'
+	lineageTag: 4c089f19-59ca-491d-813c-a3fd9a70ed42
+
+	column 'Code INSEE'
+		dataType: string
+		lineageTag: 21e6bcda-bebf-4ea6-8f7f-3a32d0b836b0
+		summarizeBy: none
+		sourceColumn: Code INSEE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: f8230ee4-e731-4cf4-982d-907af62a44a6
+		summarizeBy: none
+		sourceColumn: Ville
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numéro Département'
+		dataType: string
+		lineageTag: 33c4988c-a7cb-472d-8cb7-882040da04ed
+		summarizeBy: none
+		sourceColumn: Numéro Département
+
+		annotation SummarizationSetBy = Automatic
+
+	column Département
+		dataType: string
+		lineageTag: 6e5c613a-5473-4e8a-b83f-8ab770eb2839
+		summarizeBy: none
+		sourceColumn: Département
+
+		annotation SummarizationSetBy = Automatic
+
+	column Région
+		dataType: string
+		lineageTag: 54b8319a-327e-4099-aae0-184b9b07ce83
+		summarizeBy: none
+		sourceColumn: Région
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Géographie' = m
+		mode: import
+		source =
+				let
+				    Dossier = "C:\Users\sebas\Downloads\archive (5)\",
+				    Lire = (fichier as text, nbCol as number, enc as number) as table =>
+				        Table.PromoteHeaders(Csv.Document(File.Contents(Dossier & fichier),[Delimiter=",", Columns=nbCol, Encoding=enc, QuoteStyle=QuoteStyle.None]), [PromoteAllScalars=true]),
+				    Extraire = (t as table) as table =>
+				        let
+				            s = Table.SelectColumns(t, {"departement","id_ville","ville"}),
+				            txt = Table.TransformColumnTypes(s, {{"departement", type text},{"id_ville", type text},{"ville", type text}}),
+				            code = Table.AddColumn(txt, "Code INSEE", each Text.Start(Text.PadStart([departement],2,"0"),2) & Text.PadStart([id_ville],3,"0"), type text),
+				            dpt = Table.AddColumn(code, "Numéro Département", each Text.PadStart([departement],2,"0"), type text)
+				        in
+				            Table.SelectColumns(dpt, {"Code INSEE","ville","Numéro Département"}),
+				    Foyers = Extraire(Lire("foyers_fiscaux.csv", 15, 65001)),
+				    Loyers = Extraire(Lire("loyers.csv", 6, 65001)),
+				    Parc = Extraire(Lire("parc_immobilier.csv", 6, 65001)),
+				    VentesBrut = Lire("transactions_sample.csv", 20, 1252),
+				    VentesTxt = Table.TransformColumnTypes(Table.SelectColumns(VentesBrut, {"departement","id_ville","ville"}), {{"departement", type text},{"id_ville", type text},{"ville", type text}}),
+				    VentesCode = Table.AddColumn(VentesTxt, "Code INSEE", each let d = Text.PadStart([departement],2,"0") in if Text.Length(d) = 3 then d & Text.PadStart([id_ville],2,"0") else d & Text.PadStart([id_ville],3,"0"), type text),
+				    VentesDpt = Table.AddColumn(VentesCode, "Numéro Département", each Text.PadStart([departement],2,"0"), type text),
+				    Ventes = Table.SelectColumns(VentesDpt, {"Code INSEE","ville","Numéro Département"}),
+				    Union = Table.Combine({Foyers, Loyers, Parc, Ventes}),
+				    Valides = Table.SelectRows(Union, each [Code INSEE] <> null and Text.Length([Code INSEE]) = 5),
+				    Unique = Table.Distinct(Valides, {"Code INSEE"}),
+				    Fusion = Table.NestedJoin(Unique, {"Numéro Département"}, #"Dim Départements", {"Numéro Département"}, "dpt", JoinKind.LeftOuter),
+				    Developpe = Table.ExpandTableColumn(Fusion, "dpt", {"Département","Région"}, {"Département","Région"}),
+				    Renommer = Table.RenameColumns(Developpe, {{"ville","Ville"}}),
+				    Trie = Table.Sort(Renommer, {{"Code INSEE", Order.Ascending}})
+				in
+				    Trie
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

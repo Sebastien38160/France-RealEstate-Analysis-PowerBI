@@ -1,0 +1,176 @@
+table Fait_Ventes
+	lineageTag: f2af1acd-0cc6-4f46-84eb-86f4fbba933a
+
+	column 'ID Transaction'
+		dataType: string
+		lineageTag: 167199d5-b20b-4931-a367-97601857ac86
+		summarizeBy: none
+		sourceColumn: ID Transaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Transaction'
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yy
+		lineageTag: 71b701e2-2e1c-402b-826c-7526ccdf8801
+		summarizeBy: none
+		sourceColumn: Date Transaction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Prix
+		dataType: int64
+		formatString: 0
+		lineageTag: c5391465-8470-4b3d-b2c9-69fb0bddec6a
+		summarizeBy: sum
+		sourceColumn: Prix
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Département
+		dataType: string
+		isHidden
+		lineageTag: 27084e5a-9d8d-4897-a305-3e16da52afb0
+		summarizeBy: none
+		sourceColumn: Département
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		isHidden
+		lineageTag: 9aecbaea-9118-44d8-bb56-f29a72ed91ef
+		summarizeBy: none
+		sourceColumn: Ville
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code Postal'
+		dataType: int64
+		formatString: 0
+		lineageTag: b7654b0e-c199-458e-8bc8-a94645f3f6f5
+		summarizeBy: none
+		sourceColumn: Code Postal
+
+		annotation SummarizationSetBy = User
+
+	column Adresse
+		dataType: string
+		lineageTag: 73dbc1e5-2d7a-4ee4-a1be-e09b7e7be582
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type Batiment'
+		dataType: string
+		lineageTag: 847d57c8-84c5-455f-a05a-ded66fb44a79
+		summarizeBy: none
+		sourceColumn: Type Batiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column vefa
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3bf7e4fd-252a-4a26-8fa8-bbf5ec361bb8
+		summarizeBy: none
+		sourceColumn: vefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombres Piéces'
+		dataType: int64
+		formatString: 0
+		lineageTag: f0b4d88b-ea3a-416e-9331-7934c5d3cb8b
+		summarizeBy: sum
+		sourceColumn: Nombres Piéces
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Surface Habitable'
+		dataType: int64
+		formatString: 0
+		lineageTag: 590ba464-6cbc-47ee-818b-4c917431f408
+		summarizeBy: sum
+		sourceColumn: Surface Habitable
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column 'ID Parcelle Cadastre'
+		dataType: string
+		lineageTag: 250aae1e-5c39-4292-af7e-1e8f8aa8d250
+		summarizeBy: none
+		sourceColumn: ID Parcelle Cadastre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: de992ccf-22d3-48a3-9ea3-5a6a6bc0cdb3
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 24e95ca3-e1c1-4b2d-954e-7f3eedb72995
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Code INSEE'
+		dataType: string
+		lineageTag: 9b536724-6e29-4eed-9316-b737c1f40425
+		summarizeBy: none
+		sourceColumn: Code INSEE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fait_Ventes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\transactions_sample.csv"),[Delimiter=",", Columns=20, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Promu = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    PrixTexte = Table.TransformColumns(Promu, {{"prix", each Text.BeforeDelimiter(_, "."), type text}}),
+				    Txt = Table.TransformColumnTypes(PrixTexte, {{"departement", type text},{"id_ville", type text},{"ville", type text}}),
+				    Code = Table.AddColumn(Txt, "Code INSEE", each
+				        let d = Text.PadStart([departement], 2, "0")
+				        in  if Text.Length(d) = 3
+				            then d & Text.PadStart([id_ville], 2, "0")
+				            else d & Text.PadStart([id_ville], 3, "0"), type text),
+				    DptNorm = Table.TransformColumns(Code, {{"departement", each Text.PadStart(_, 2, "0"), type text}}),
+				    Types = Table.TransformColumnTypes(DptNorm, {{"prix", Int64.Type},{"code_postal", Int64.Type},{"date_transaction", type date},{"vefa", type logical},{"n_pieces", Int64.Type},{"surface_habitable", Int64.Type},{"latitude", type text},{"longitude", type text}}),
+				    Coord = Table.TransformColumnTypes(Types, {{"latitude", type number},{"longitude", type number}}, "en-US"),
+				    Nettoyage = Table.RemoveColumns(Coord, {"surface_terrains_nature","surface_terrains_sols","surface_dependances","surface_locaux_industriels","surface_terrains_agricoles","id_ville"}),
+				    Renommer = Table.RenameColumns(Nettoyage, {{"id_transaction","ID Transaction"},{"date_transaction","Date Transaction"},{"prix","Prix"},{"departement","Département"},{"ville","Ville"},{"code_postal","Code Postal"},{"adresse","Adresse"},{"type_batiment","Type Batiment"},{"n_pieces","Nombres Piéces"},{"surface_habitable","Surface Habitable"},{"latitude","Latitude"},{"longitude","Longitude"},{"id_parcelle_cadastre","ID Parcelle Cadastre"}}),
+				    Valides = Table.SelectRows(Renommer, each [Code INSEE] <> null and [Date Transaction] <> null)
+				in
+				    Valides
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

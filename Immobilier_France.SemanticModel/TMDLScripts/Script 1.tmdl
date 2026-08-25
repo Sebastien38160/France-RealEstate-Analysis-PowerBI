@@ -1,0 +1,1459 @@
+createOrReplace
+
+	model Model
+		culture: fr-FR
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: fr-FR
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table Fait_Ventes
+			lineageTag: f2af1acd-0cc6-4f46-84eb-86f4fbba933a
+
+			column 'ID Transaction'
+				dataType: string
+				lineageTag: 167199d5-b20b-4931-a367-97601857ac86
+				summarizeBy: none
+				sourceColumn: ID Transaction
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Date Transaction'
+				dataType: dateTime
+				isHidden
+				formatString: dd/mm/yy
+				lineageTag: 71b701e2-2e1c-402b-826c-7526ccdf8801
+				summarizeBy: none
+				sourceColumn: Date Transaction
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+				annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+			column Prix
+				dataType: int64
+				formatString: 0
+				lineageTag: c5391465-8470-4b3d-b2c9-69fb0bddec6a
+				summarizeBy: sum
+				sourceColumn: Prix
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isDecimal":true}
+
+			column Département
+				dataType: string
+				isHidden
+				lineageTag: 27084e5a-9d8d-4897-a305-3e16da52afb0
+				summarizeBy: none
+				sourceColumn: Département
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'ID Ville'
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 5056f2c1-4281-45b3-8ca7-510848f10eac
+				summarizeBy: none
+				sourceColumn: ID Ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column Ville
+				dataType: string
+				isHidden
+				lineageTag: 9aecbaea-9118-44d8-bb56-f29a72ed91ef
+				summarizeBy: none
+				sourceColumn: Ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Code Postal'
+				dataType: int64
+				formatString: 0
+				lineageTag: b7654b0e-c199-458e-8bc8-a94645f3f6f5
+				summarizeBy: none
+				sourceColumn: Code Postal
+
+				annotation SummarizationSetBy = User
+
+			column Adresse
+				dataType: string
+				lineageTag: 73dbc1e5-2d7a-4ee4-a1be-e09b7e7be582
+				summarizeBy: none
+				sourceColumn: Adresse
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Type Batiment'
+				dataType: string
+				lineageTag: 847d57c8-84c5-455f-a05a-ded66fb44a79
+				summarizeBy: none
+				sourceColumn: Type Batiment
+
+				annotation SummarizationSetBy = Automatic
+
+			column vefa
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 3bf7e4fd-252a-4a26-8fa8-bbf5ec361bb8
+				summarizeBy: none
+				sourceColumn: vefa
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Nombres Piéces'
+				dataType: int64
+				formatString: 0
+				lineageTag: f0b4d88b-ea3a-416e-9331-7934c5d3cb8b
+				summarizeBy: sum
+				sourceColumn: Nombres Piéces
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Surface Habitable'
+				dataType: int64
+				formatString: 0
+				lineageTag: 590ba464-6cbc-47ee-818b-4c917431f408
+				summarizeBy: sum
+				sourceColumn: Surface Habitable
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isDecimal":true}
+
+			column 'ID Parcelle Cadastre'
+				dataType: string
+				lineageTag: 250aae1e-5c39-4292-af7e-1e8f8aa8d250
+				summarizeBy: none
+				sourceColumn: ID Parcelle Cadastre
+
+				annotation SummarizationSetBy = Automatic
+
+			column Latitude
+				dataType: double
+				lineageTag: de992ccf-22d3-48a3-9ea3-5a6a6bc0cdb3
+				summarizeBy: none
+				sourceColumn: Latitude
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column Longitude
+				dataType: double
+				lineageTag: 24e95ca3-e1c1-4b2d-954e-7f3eedb72995
+				summarizeBy: none
+				sourceColumn: Longitude
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			partition Fait_Ventes = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\transactions_sample.csv"),[Delimiter=",", Columns=20, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Texte extrait avant le délimiteur" = Table.TransformColumns(#"En-têtes promus", {{"prix", each Text.BeforeDelimiter(_, "."), type text}}),
+						    #"Type modifié" = Table.TransformColumnTypes(#"Texte extrait avant le délimiteur",{{"prix", Int64.Type}, {"departement", Int64.Type}, {"id_ville", Int64.Type}, {"code_postal", Int64.Type}, {"date_transaction", type date}, {"vefa", type logical}, {"n_pieces", Int64.Type}, {"surface_habitable", Int64.Type}, {"latitude", type text}}),
+						    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"surface_terrains_nature", "surface_terrains_sols", "surface_dependances", "surface_locaux_industriels", "surface_terrains_agricoles"}),
+						    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"Colonnes supprimées", {{"latitude", type number}, {"longitude", type number}}, "en-US"),
+						    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié avec paramètres régionaux",{{"id_transaction", "ID Transaction"}, {"date_transaction", "Date Transaction"}, {"prix", "Prix"}, {"departement", "Département"}, {"id_ville", "ID Ville"}, {"ville", "Ville"}, {"code_postal", "Code Postal"}, {"adresse", "Adresse"}, {"type_batiment", "Type Batiment"}, {"n_pieces", "Nombres Piéces"}, {"surface_habitable", "Surface Habitable"}, {"latitude", "Latitude"}, {"longitude", "Longitude"}, {"id_parcelle_cadastre", "ID Parcelle Cadastre"}}),
+						    #"Type modifié1" = Table.TransformColumnTypes(#"Colonnes renommées",{{"Département", type text}}),
+						    #"Doublons supprimés" = Table.Distinct(#"Type modifié1", {"ID Ville"})
+						in
+						    #"Doublons supprimés"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table DateTableTemplate_f8e8d563-89b7-4af6-8d88-8fd3eb7a283b
+			isHidden
+			isPrivate
+			lineageTag: faf47741-21bc-44da-b88d-18521bf85cfc
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 8ae4c010-91b8-4341-a769-a269f003faae
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Année = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 18ba4976-e14b-4713-b142-a6ce687ab210
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column NoMois = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: ded1107f-f7f3-4b88-8cde-ba580a5b2d65
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Mois = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: eac617f5-5193-4032-91ac-62ea42467c8f
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: NoMois
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column NoTrimestre = INT(([NoMois] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 598ebe6a-5c34-40ad-b333-cf8f345af4e5
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Trimestre = "Qtr " & [NoTrimestre]
+				dataType: string
+				isHidden
+				lineageTag: 8aaa5490-5adb-40f8-8a2f-71390d870915
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: NoTrimestre
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Jour = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 9108fbbe-d337-4fc7-bf56-4ee97f04b802
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Hiérarchie de dates'
+				lineageTag: a54da850-7bcd-4d11-8f2d-1df8b3c8dc04
+
+				level Année
+					lineageTag: eb01db8b-3d08-4317-9e6b-772361aa961b
+					column: Année
+
+				level Trimestre
+					lineageTag: 3fca33db-0bf1-4979-943f-e166d7449aad
+					column: Trimestre
+
+				level Mois
+					lineageTag: 26f33391-9e41-41f5-bf7f-68780b105d40
+					column: Mois
+
+				level Jour
+					lineageTag: b57e2168-1d6c-4913-8a37-b612d13b1e92
+					column: Jour
+
+				annotation TemplateId = DateHierarchy
+
+			partition DateTableTemplate_f8e8d563-89b7-4af6-8d88-8fd3eb7a283b = calculated
+				mode: import
+				source = Calendar(Date(2015,1,1), Date(2015,1,1))
+
+			annotation __PBI_TemplateDateTable = true
+
+			annotation DefaultItem = DateHierarchy
+
+		table 'Fait Foyers Fiscaux'
+			lineageTag: 148815c3-3c95-4841-98c7-da89033a9dc1
+
+			column date
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 18c3b6d0-9126-436e-8496-9a2be25935d2
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column departement
+				dataType: string
+				isHidden
+				lineageTag: d77a40ed-ca25-48c7-b07a-e8c67d2622d2
+				summarizeBy: none
+				sourceColumn: departement
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column id_ville
+				dataType: string
+				isHidden
+				lineageTag: 1a329c55-e549-4de0-83ea-300ac53687a3
+				summarizeBy: none
+				sourceColumn: id_ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column ville
+				dataType: string
+				isHidden
+				lineageTag: fca0dd3c-5a69-444c-ad9e-7dba0916fe28
+				summarizeBy: none
+				sourceColumn: ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column n_foyers_fiscaux
+				dataType: string
+				lineageTag: e58d0edf-1257-4dde-9356-55dac4d6bd9f
+				summarizeBy: none
+				sourceColumn: n_foyers_fiscaux
+
+				annotation SummarizationSetBy = Automatic
+
+			column revenu_fiscal_moyen
+				dataType: double
+				formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+				lineageTag: fa28adf1-3e31-45c0-be7a-8539d28446b8
+				summarizeBy: average
+				sourceColumn: revenu_fiscal_moyen
+
+				annotation SummarizationSetBy = User
+
+			column montant_impot_moyen
+				dataType: double
+				lineageTag: a54141a1-0ce2-4b94-8ae2-b26859a02e9c
+				summarizeBy: sum
+				sourceColumn: montant_impot_moyen
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			partition 'Fait Foyers Fiscaux' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\foyers_fiscaux.csv"),[Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"En-têtes promus", {{"revenu_fiscal_moyen", type number}, {"montant_impot_moyen", type number}}, "en-US"),
+						    #"Colonnes permutées" = Table.ReorderColumns(#"Type modifié avec paramètres régionaux",{"date", "departement", "id_ville", "ville", "n_foyers_fiscaux", "revenu_fiscal_moyen", "montant_impot_moyen", "n_foyers_12k_15k", "n_foyers_15k_20k", "n_foyers_20k_30k", "n_foyers_30k_50k", "n_foyers_0k_10k", "n_foyers_10k_12k", "n_foyers_50k_100k", "n_foyers_100k_plus"}),
+						    #"Colonnes supprimées" = Table.RemoveColumns(#"Colonnes permutées",{"n_foyers_12k_15k", "n_foyers_15k_20k", "n_foyers_20k_30k", "n_foyers_30k_50k", "n_foyers_0k_10k", "n_foyers_10k_12k", "n_foyers_50k_100k", "n_foyers_100k_plus"}),
+						    #"Doublons supprimés" = Table.Distinct(#"Colonnes supprimées", {"id_ville"}),
+						    #"Type modifié" = Table.TransformColumnTypes(#"Doublons supprimés",{{"date", Int64.Type}})
+						in
+						    #"Type modifié"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Dim IRL'
+			lineageTag: d9415727-db93-4400-b261-83745b40e9fd
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: dd/mm/yy
+				lineageTag: 5bed6554-6112-4689-99bc-ea288b135aa7
+				summarizeBy: none
+				sourceColumn: Date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+				annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+			column IRL
+				dataType: double
+				lineageTag: 8d00dcfe-fc76-4738-8f5e-4f2cba9c5ddc
+				summarizeBy: sum
+				sourceColumn: IRL
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			partition 'Dim IRL' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\indice_reference_loyers.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"quarter", type date}, {"IRL", type text}}),
+						    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"Type modifié", {{"IRL", type number}}, "en-US"),
+						    #"Type modifié1" = Table.TransformColumnTypes(#"Type modifié avec paramètres régionaux",{{"quarter", type date}}),
+						    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié1",{{"quarter", "Date"}})
+						in
+						    #"Colonnes renommées"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Fait Loyers'
+			lineageTag: 27d531a0-7270-4ffd-9219-d1d9950807a6
+
+			measure 'Loyer Moyen Global' =
+					
+					VAR TypeSelectionne = SELECTEDVALUE('Fait_Ventes'[Type Batiment])
+					RETURN
+					SWITCH(
+					    TypeSelectionne,
+					    "Appartement", [Loyer Moyen m2 Appartement],
+					    "Maison", [Loyer Moyen m2 Maison],
+					    ([Loyer Moyen m2 Appartement] + [Loyer Moyen m2 Maison]) / 2
+					)
+				lineageTag: 8e7c388e-a77f-4bdd-b6f9-277c9155ca40
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column departement
+				dataType: string
+				isHidden
+				lineageTag: 57ef9479-2250-4330-9b22-073e7c059e08
+				summarizeBy: none
+				sourceColumn: departement
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column id_ville
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 2c1e35f0-e576-4fd5-8603-c994b55a621c
+				summarizeBy: none
+				sourceColumn: id_ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column ville
+				dataType: string
+				isHidden
+				lineageTag: af4cb58b-da55-42e0-94b6-52d28a0432d0
+				summarizeBy: none
+				sourceColumn: ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column date
+				dataType: dateTime
+				isHidden
+				formatString: Long Date
+				lineageTag: 789ea74a-1b5f-40c0-a7c9-c3d21436fdbd
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column loyer_m2_appartement
+				dataType: double
+				lineageTag: b5189324-28ca-4623-9bda-9e044e2989c1
+				summarizeBy: average
+				sourceColumn: loyer_m2_appartement
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column loyer_m2_maison
+				dataType: double
+				lineageTag: 1a64fed2-78aa-440f-a095-3f8fa9f79a1f
+				summarizeBy: average
+				sourceColumn: loyer_m2_maison
+
+				annotation SummarizationSetBy = User
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			partition 'Fait Loyers' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\loyers.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"departement", type text}, {"id_ville", Int64.Type}, {"ville", type text}, {"date", Int64.Type}, {"loyer_m2_appartement", type text}, {"loyer_m2_maison", type text}}),
+						    #"Doublons supprimés" = Table.Distinct(#"Type modifié", {"id_ville"}),
+						    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"Doublons supprimés", {{"loyer_m2_appartement", type number}, {"loyer_m2_maison", type number}}, "en-US"),
+						    Arrondi = Table.TransformColumns(#"Type modifié avec paramètres régionaux",{{"loyer_m2_appartement", each Number.Round(_, 2), type number}, {"loyer_m2_maison", each Number.Round(_, 2), type number}}),
+						    #"Type modifié1" = Table.TransformColumnTypes(Arrondi,{{"date", type date}})
+						in
+						    #"Type modifié1"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Fait parc_immobilier'
+			lineageTag: 48a01722-5e81-4267-ae44-bee68db702f9
+
+			column date
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 175191ee-0741-4070-84e2-658e0d81e1c0
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column departement
+				dataType: string
+				isHidden
+				lineageTag: 4673e718-41af-487a-b5bb-b49510f2bb50
+				summarizeBy: none
+				sourceColumn: departement
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column id_ville
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 28fcb691-da2b-439f-a15d-d94ebc877dcd
+				summarizeBy: none
+				sourceColumn: id_ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column ville
+				dataType: string
+				isHidden
+				lineageTag: 08924b99-f0c1-4fbe-a557-1056dec0b101
+				summarizeBy: none
+				sourceColumn: ville
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			column n_logements_vacants
+				dataType: int64
+				formatString: 0
+				lineageTag: a62bb3a7-7c9b-498f-8ca5-2b4cc05463f1
+				summarizeBy: none
+				sourceColumn: n_logements_vacants
+
+				annotation SummarizationSetBy = User
+
+			partition 'Fait parc_immobilier' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\parc_immobilier.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"date", Int64.Type}, {"departement", type text}, {"id_ville", Int64.Type}, {"ville", type text}, {"n_logements", type text}, {"n_logements_vacants", Int64.Type}}),
+						    #"Doublons supprimés" = Table.Distinct(#"Type modifié", {"id_ville"}),
+						    #"Lignes filtrées" = Table.SelectRows(#"Doublons supprimés", each true),
+						    #"Type modifié1" = Table.TransformColumnTypes(#"Lignes filtrées",{{"n_logements", Int64.Type}}),
+						    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié1",{"n_logements"})
+						in
+						    #"Colonnes supprimées"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Fait taux_endettement'
+			lineageTag: 1ff3a428-751e-45ee-901d-77112dafdcb0
+
+			column date
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 35a397b6-01d6-4dd2-8be5-d914de9d2272
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column taux_endettement
+				dataType: double
+				formatString: 0.00
+				lineageTag: fa1017e3-2c45-434e-b30f-ee0ba927bfb2
+				summarizeBy: sum
+				sourceColumn: taux_endettement
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = User
+
+			partition 'Fait taux_endettement' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\taux_endettement.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié avec paramètres régionaux" = Table.TransformColumnTypes(#"En-têtes promus", {{"taux_endettement", type number}}, "en-US"),
+						    #"Type modifié" = Table.TransformColumnTypes(#"Type modifié avec paramètres régionaux",{{"date", type date}})
+						in
+						    #"Type modifié"
+
+			changedProperty = IsHidden
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Fait taux_interet'
+			lineageTag: 82d12657-6147-421f-aa0b-c4e3c3e40d53
+
+			column date
+				dataType: dateTime
+				isHidden
+				formatString: dd/mm/yy
+				lineageTag: e2dcc72c-3ee8-48a8-aa59-7a369fb2941d
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+				annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+			column taux
+				dataType: string
+				lineageTag: eb6e6585-8428-48b7-8dcf-106f0490489b
+				summarizeBy: none
+				sourceColumn: taux
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Fait taux_interet' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\taux_interet.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"date", type date}, {"taux", type text}})
+						in
+						    #"Type modifié"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Fait Emprunts'
+			lineageTag: 9de1f851-b409-40fd-b98d-181e142cce87
+
+			column date
+				dataType: dateTime
+				formatString: dd/mm/yy
+				lineageTag: 63b98ed3-0918-42be-9c78-41bb12d32813
+				summarizeBy: none
+				sourceColumn: date
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+				annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+			column emprunts_M€
+				dataType: int64
+				formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+				lineageTag: 77c23e03-5350-4fc8-9827-b350a8f97044
+				summarizeBy: sum
+				sourceColumn: emprunts_M€
+
+				changedProperty = IsHidden
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Fait Emprunts' = m
+				mode: import
+				source =
+						let
+						    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\flux_nouveaux_emprunts.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+						    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"date", type date}, {"emprunts_M€", Int64.Type}})
+						in
+						    #"Type modifié"
+
+			changedProperty = IsHidden
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Dim Date'
+			lineageTag: 9dc89475-3cc4-4209-b5e6-227e425736ed
+
+			column Date
+				dataType: dateTime
+				formatString: dd/mm/yy
+				lineageTag: c4107452-7eb8-4a1c-b1d4-bf6f85526153
+				summarizeBy: none
+				sourceColumn: Date
+
+				variation Variation
+					isDefault
+					relationship: a4878c55-1486-456f-a210-b62b6b71f4a5
+					defaultHierarchy: LocalDateTable_98edf69c-961a-4c7f-80ad-8261e4bff3e8.'Hiérarchie de dates'
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+				annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+			column Année
+				dataType: int64
+				formatString: 0
+				lineageTag: 912ad44b-2e17-4b34-a98a-ff48a7b390eb
+				summarizeBy: none
+				sourceColumn: Année
+
+				annotation SummarizationSetBy = User
+
+			column 'Mois Num'
+				dataType: int64
+				formatString: 0
+				lineageTag: e518b54a-f827-411e-a7ae-9c5699243353
+				summarizeBy: none
+				sourceColumn: Mois Num
+
+				annotation SummarizationSetBy = User
+
+			column 'Nom Mois'
+				dataType: string
+				lineageTag: 3cad4a67-440b-4f17-8057-2500ac2c670a
+				summarizeBy: none
+				sourceColumn: Nom Mois
+
+				annotation SummarizationSetBy = Automatic
+
+			column Trimestre
+				dataType: string
+				lineageTag: d09aa73e-4149-4bd0-991c-04654fcbbced
+				summarizeBy: none
+				sourceColumn: Trimestre
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Dim Date' = m
+				mode: import
+				source =
+						let
+						    Source = List.Dates(#date(2020, 1, 1), Number.From(DateTime.LocalNow()) - Number.From(#date(2020, 1, 1)), #duration(1, 0, 0, 0)),
+						    Tableau = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+						    Renommer = Table.RenameColumns(Tableau,{{"Column1", "Date"}}),
+						    TypeDate = Table.TransformColumnTypes(Renommer,{{"Date", type date}}),
+						    Annee = Table.AddColumn(TypeDate, "Année", each Date.Year([Date]), Int64.Type),
+						    MoisNum = Table.AddColumn(Annee, "Mois Num", each Date.Month([Date]), Int64.Type),
+						    NomMois = Table.AddColumn(MoisNum, "Nom Mois", each Date.MonthName([Date]), type text),
+						    Trimestre = Table.AddColumn(NomMois, "Trimestre", each "T" & Text.From(Date.QuarterOfYear([Date])), type text)
+						in
+						    Trimestre
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table 'Dim Géographie'
+			lineageTag: 69dbb40b-63ce-4956-a134-746dce7c7c03
+
+			column id_ville
+				dataType: int64
+				formatString: 0
+				lineageTag: d4801e9c-58e4-4282-9f8f-3491cbc8f7d1
+				summarizeBy: none
+				sourceColumn: id_ville
+
+				annotation SummarizationSetBy = Automatic
+
+			column ville
+				dataType: string
+				lineageTag: af4c7367-2774-47a5-b1d2-d8ef3760c54b
+				summarizeBy: none
+				sourceColumn: ville
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Numéro Département'
+				dataType: string
+				lineageTag: 045bdf57-53e1-43f0-90c6-56dda2596b6f
+				summarizeBy: none
+				sourceColumn: Numéro Département
+
+				annotation SummarizationSetBy = Automatic
+
+			column Département
+				dataType: string
+				lineageTag: 39ad2196-ed61-40c2-b28c-2836d8fd533f
+				summarizeBy: none
+				sourceColumn: Département
+
+				annotation SummarizationSetBy = Automatic
+
+			column Région
+				dataType: string
+				lineageTag: 85fc823a-9e7b-40cd-b021-3b9f633749ab
+				summarizeBy: none
+				sourceColumn: Région
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Dim Géographie' = m
+				mode: import
+				source =
+						let
+						    Source = #"Fait parc_immobilier",
+						    #"Requête ajoutée" = Table.Combine({Source, #"Fait Foyers Fiscaux", #"Fait Loyers"}),
+						    #"Autres colonnes supprimées" = Table.SelectColumns(#"Requête ajoutée",{"id_ville", "ville", "departement"}),
+						    #"Type modifié" = Table.TransformColumnTypes(#"Autres colonnes supprimées",{{"departement", type text}}),
+						    #"Doublons supprimés" = Table.Distinct(#"Type modifié"),
+						    #"Doublons supprimés1" = Table.Distinct(#"Doublons supprimés", {"id_ville"}),
+						    #"Doublons supprimés2" = Table.Distinct(#"Doublons supprimés1", {"id_ville"}),
+						    #"Type modifié1" = Table.TransformColumnTypes(#"Doublons supprimés2",{{"id_ville", Int64.Type}}),
+						    #"Doublons supprimés3" = Table.Distinct(#"Type modifié1", {"id_ville"}),
+						    #"Requêtes fusionnées" = Table.NestedJoin(#"Doublons supprimés3", {"departement"}, #"liste-dpt-drom-com-v1 2", {"code"}, "liste-dpt-drom-com-v1 2", JoinKind.LeftOuter),
+						    #"liste-dpt-drom-com-v1 2 développé" = Table.ExpandTableColumn(#"Requêtes fusionnées", "liste-dpt-drom-com-v1 2", {"nom", "region"}, {"liste-dpt-drom-com-v1 2.nom", "liste-dpt-drom-com-v1 2.region"}),
+						    #"Colonnes renommées" = Table.RenameColumns(#"liste-dpt-drom-com-v1 2 développé",{{"departement", "Numéro Département"}, {"liste-dpt-drom-com-v1 2.nom", "Département"}, {"liste-dpt-drom-com-v1 2.region", "Région"}})
+						in
+						    #"Colonnes renommées"
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		table Mesures
+			lineageTag: 9cea211c-ef31-4708-97af-a2df1b78f37b
+
+			measure 'Surface Habitable Moyenne' = AVERAGE(Fait_Ventes[Surface Habitable])
+				formatString: 0
+				lineageTag: f9a7b29a-96a5-4f0c-8053-cf76cbc0bce3
+
+			measure 'Prix Moyen' = AVERAGE(Fait_Ventes[Prix])
+				formatString: #,0
+				lineageTag: 44fa75ca-95e7-4e18-9ceb-2d060443a2f1
+
+				annotation PBI_FormatHint = {"isDecimal":true}
+
+			measure 'Nombres Ventes' = COUNTROWS(Fait_Ventes)
+				formatString: 0
+				lineageTag: e981994e-6734-4317-a0c0-490bef68ffef
+
+			measure 'Emprunt Moyen' = AVERAGE('Fait Emprunts'[emprunts_M€])
+				formatString: #,0.00 "M€"
+				lineageTag: 14b6866e-b823-46b2-8fd9-f5d0eca95a21
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Montant Impot Moyen' = AVERAGE('Fait Foyers Fiscaux'[montant_impot_moyen])
+				formatString: "€" #,0
+				lineageTag: 0e0db720-107f-4a97-b35c-d756ef3204ee
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Nombre Foyer Fiscaux' = SUM('Fait Foyers Fiscaux'[n_foyers_fiscaux])
+				formatString: #,0
+				lineageTag: 6b254bf7-1bdc-4e3a-b66c-f1e0eb3eb85d
+
+			measure 'Moyenne IRL' = AVERAGE('Dim IRL'[IRL])
+				formatString: #,0.00
+				lineageTag: 6b619be6-1747-413e-bb36-792e44340873
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Max m2 Appartement' = MAX('Fait Loyers'[loyer_m2_appartement])
+				formatString: #,0.00 "€/m²"
+				lineageTag: 0faeddb5-0fcf-4eae-acb7-b1e4312c01cc
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Max m2 Maison' = MAX('Fait Loyers'[loyer_m2_maison])
+				formatString: #,0.00 "€/m²"
+				lineageTag: f34c2a17-43cb-416d-ae60-3c2ab90b7195
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Min m2 Appartement' = MIN('Fait Loyers'[loyer_m2_appartement])
+				formatString: #,0.00 "€/m²"
+				lineageTag: 47c36658-4bad-40d0-89ac-8370bbe5e2ce
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Min m2 Maison' = MIN('Fait Loyers'[loyer_m2_maison])
+				formatString: #,0.00 "€/m²"
+				lineageTag: 5d151329-7ddc-40a5-a9b3-14797a57853a
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Moyen m2 Appartement' = AVERAGE('Fait Loyers'[loyer_m2_appartement])
+				formatString: #,0.00 "€/m²"
+				lineageTag: dc11f88b-6cf1-4248-85b8-8ce701bbbbf4
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Loyer Moyen m2 Maison' = AVERAGE('Fait Loyers'[loyer_m2_maison])
+				formatString: #,0.00 "€/m²"
+				lineageTag: 60aed08e-d5ea-423b-8996-5126dc407cab
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Prix Moyen m2' = DIVIDE(SUM(Fait_Ventes[Prix]),SUM(Fait_Ventes[Surface Habitable]), 0)
+				formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+				lineageTag: 8fecd6fd-4ae6-4049-af71-b8cd66a9a6f3
+
+			measure 'Moyenne Taux Endettement %' = ```
+					
+					CALCULATE(
+					    AVERAGE('Fait taux_endettement'[taux_endettement]), 
+					    ALL('Dim Géographie')
+					)
+					```
+				formatString: 0.00\ "%"
+				lineageTag: 663b29ca-571d-4544-943f-2e904c29444c
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Moyenne Taux Interet' = AVERAGE('Fait taux_interet'[taux])
+				formatString: 0.00\ "%"
+				lineageTag: 1c3d39b1-b41a-4e0c-bef1-4fdb0327ebaf
+
+			measure 'Moyenne Logement Vacant' = AVERAGE('Fait parc_immobilier'[n_logements_vacants])
+				formatString: #,0
+				lineageTag: 4f880ce9-0a46-4ec7-afd0-e689373e8185
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure 'Evolution Prix m2 %' = VAR PrixAnneePrecedente = CALCULATE([Prix Moyen m2], SAMEPERIODLASTYEAR('Dim Date'[Date])) RETURN DIVIDE([Prix Moyen m2] - PrixAnneePrecedente, PrixAnneePrecedente, 0)
+				formatString: 0\ %;-0\ %;0\ %
+				lineageTag: 1876e9ae-0116-47c7-8c1d-6b895ef2b7fc
+
+			measure 'Moyenne Taux Interet %' = ```
+					
+					CALCULATE(
+					    AVERAGE('Fait taux_interet'[taux]), 
+					    ALL('Dim Géographie')
+					)
+					```
+				formatString: 0.00\ "%"
+				lineageTag: cbaeab0b-d50b-4812-b744-2a426471b675
+
+			measure 'CA Total' = SUM(Fait_Ventes[Prix])
+				formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+				lineageTag: 9e30e8db-95e3-42f4-adc4-d5d72bc34bac
+
+			measure 'Couleur Dynamique' =
+					
+					VAR mesure = SELECTEDVALUE('Mesure sélectionner'[Mesure sélectionner Commande])
+					RETURN
+					SWITCH(
+					    mesure,
+					    0, "#56C960",
+					    1, "#329D9C",
+					    2, "#9FD3C7"
+					)
+				lineageTag: 6721293e-e9c8-47da-9f70-a89063e02f76
+
+			measure 'Liste des valeurs de Région' =
+					
+					VAR __DISTINCT_VALUES_COUNT = DISTINCTCOUNT('Dim Géographie'[Région])
+					VAR __MAX_VALUES_TO_SHOW = 3
+					RETURN
+						"Analyse des ventes pour la région " & IF(
+							__DISTINCT_VALUES_COUNT > __MAX_VALUES_TO_SHOW,
+							CONCATENATE(
+								CONCATENATEX(
+									TOPN(
+										__MAX_VALUES_TO_SHOW,
+										VALUES('Dim Géographie'[Région]),
+										'Dim Géographie'[Région],
+										ASC
+									),
+									'Dim Géographie'[Région],
+									", ",
+									'Dim Géographie'[Région],
+									ASC
+								),
+								",  etc."
+							),
+							CONCATENATEX(
+								VALUES('Dim Géographie'[Région]),
+								'Dim Géographie'[Région],
+								", ",
+								'Dim Géographie'[Région],
+								ASC
+							)
+						)
+				lineageTag: c5cedb34-4e68-4980-a91a-583fa6c07a8e
+
+				extendedProperty MeasureTemplate = {"version":0,"daxTemplateName":"ConcatenateValues"}
+
+				changedProperty = FormatString
+
+			measure 'Liste des valeurs de Nom Département' =
+					
+					VAR __DISTINCT_VALUES_COUNT = DISTINCTCOUNT('Dim Géographie'[Département])
+					VAR __MAX_VALUES_TO_SHOW = 3
+					RETURN
+						IF(
+							__DISTINCT_VALUES_COUNT > __MAX_VALUES_TO_SHOW,
+							CONCATENATE(
+								CONCATENATEX(
+									TOPN(
+										__MAX_VALUES_TO_SHOW,
+										VALUES('Dim Géographie'[Département]),
+										'Dim Géographie'[Département],
+										ASC
+									),
+									'Dim Géographie'[Département],
+									", ",
+									'Dim Géographie'[Département],
+									ASC
+								),
+								",  etc."
+							),
+							CONCATENATEX(
+								VALUES('Dim Géographie'[Département]),
+								'Dim Géographie'[Département],
+								", ",
+								'Dim Géographie'[Département],
+								ASC
+							)
+						)
+				lineageTag: 51eacfbe-d19a-4555-8de7-f29671d26e26
+
+				extendedProperty MeasureTemplate = {"version":0,"daxTemplateName":"ConcatenateValues"}
+
+				changedProperty = FormatString
+
+			measure 'Titre Dynamique Complet' =
+					
+					VAR __MAX_VALUES_TO_SHOW = 3
+					
+					-- Logique pour les Régions
+					VAR __DISTINCT_REGIONS = DISTINCTCOUNT('Dim Géographie'[Région])
+					VAR __REGION_TEXT = IF(__DISTINCT_REGIONS > __MAX_VALUES_TO_SHOW,
+					    CONCATENATEX(TOPN(__MAX_VALUES_TO_SHOW, VALUES('Dim Géographie'[Région])), 'Dim Géographie'[Région], ", ") & ", etc.",
+					    CONCATENATEX(VALUES('Dim Géographie'[Région]), 'Dim Géographie'[Région], ", ")
+					)
+					
+					-- Logique pour les Départements
+					VAR __DISTINCT_DEPT = DISTINCTCOUNT('Dim Géographie'[Département])
+					VAR __DEPT_TEXT = IF(__DISTINCT_DEPT > __MAX_VALUES_TO_SHOW,
+					    CONCATENATEX(TOPN(__MAX_VALUES_TO_SHOW, VALUES('Dim Géographie'[Département])), 'Dim Géographie'[Département], ", ") & ", etc.",
+					    CONCATENATEX(VALUES('Dim Géographie'[Département]), 'Dim Géographie'[Département], ", ")
+					)
+					
+					RETURN
+					"Analyse pour la région : " & __REGION_TEXT & " | Département(s) : " & __DEPT_TEXT
+				lineageTag: bee53d2d-f6f0-4e27-aded-0ccd6a34c094
+
+			partition Mesures = m
+				mode: import
+				source =
+						let
+						    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+						    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Colonne 1", type text}}),
+						    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Colonne 1"})
+						in
+						    #"Colonnes supprimées"
+
+			annotation PBI_ResultType = Table
+
+		table LocalDateTable_98edf69c-961a-4c7f-80ad-8261e4bff3e8
+			isHidden
+			showAsVariationsOnly
+			lineageTag: 4fa8e5b0-9676-4f7f-a197-cbf45c09f3fb
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 38bd3266-d4d3-4ac5-a982-b523b59bd3a9
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Année = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: a7d3961f-f852-478b-9424-641fbd70970b
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column NoMois = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 3d68ac52-5561-4314-bf9d-77497ad43291
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Mois = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 7b7af23c-0103-412e-b682-152ae34abfb8
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: NoMois
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column NoTrimestre = INT(([NoMois] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 31cf0995-8aad-44bb-b314-0e213bcf7f28
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Trimestre = "Qtr " & [NoTrimestre]
+				dataType: string
+				isHidden
+				lineageTag: 829d7193-626c-4c46-8056-ba9496486614
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: NoTrimestre
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Jour = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 908987ca-8328-4cc6-8c0e-3efe1ac9a359
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Hiérarchie de dates'
+				lineageTag: d2a1f178-8ed0-4532-b100-d7dc70d86e91
+
+				level Année
+					lineageTag: b916a9ff-9a75-4959-80d9-ac8ed2bb4ed6
+					column: Année
+
+				level Trimestre
+					lineageTag: 35f6a614-737a-4b3a-9f50-b21e78eebc7a
+					column: Trimestre
+
+				level Mois
+					lineageTag: 970992fc-b3d9-446d-ac09-c44aac41b56a
+					column: Mois
+
+				level Jour
+					lineageTag: d2c7f270-1418-4960-be75-167b8e7c352c
+					column: Jour
+
+				annotation TemplateId = DateHierarchy
+
+			partition LocalDateTable_98edf69c-961a-4c7f-80ad-8261e4bff3e8 = calculated
+				mode: import
+				source = Calendar(Date(Year(MIN('Dim Date'[Date])), 1, 1), Date(Year(MAX('Dim Date'[Date])), 12, 31))
+
+			annotation __PBI_LocalDateTable = true
+
+		table 'Mesure sélectionner'
+			lineageTag: 8a9614a6-88aa-4cf9-9026-e36d09ab20e3
+
+			column 'Mesure sélectionner'
+				lineageTag: a41f4713-c3ca-4faf-9369-31c177272222
+				summarizeBy: none
+				sourceColumn: [Value1]
+				sortByColumn: 'Mesure sélectionner Commande'
+
+				relatedColumnDetails
+					groupByColumn: 'Mesure sélectionner Champs'
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Mesure sélectionner Champs'
+				isHidden
+				lineageTag: 791627ac-695a-4759-a71f-e8b086e33fec
+				summarizeBy: none
+				sourceColumn: [Value2]
+				sortByColumn: 'Mesure sélectionner Commande'
+
+				extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Mesure sélectionner Commande'
+				isHidden
+				formatString: 0
+				lineageTag: bdead296-2ca6-4804-90ec-04f6b9619271
+				summarizeBy: sum
+				sourceColumn: [Value3]
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Mesure sélectionner' = calculated
+				mode: import
+				source = ```
+						{
+						    ("Nombres Ventes", NAMEOF('Mesures'[Nombres Ventes]), 0),
+						    ("Chiffre D'Affaire", NAMEOF('Mesures'[CA Total]), 1),
+						    ("Prix Moyen", NAMEOF('Mesures'[Prix Moyen]), 2)
+						    
+						}
+						```
+
+			annotation PBI_Id = 7614cb188dc548bbb43e7fe46302f087
+
+		table 'Mesure sélectionner2'
+			lineageTag: 1c8d9238-0d9d-4e89-bf87-d2c86da812ee
+
+			column 'Mesure sélectionner2'
+				lineageTag: a8220e1b-a8ca-4078-a7e2-5c73742ba151
+				summarizeBy: none
+				sourceColumn: [Value1]
+				sortByColumn: 'Mesure sélectionner2 Commande'
+
+				relatedColumnDetails
+					groupByColumn: 'Mesure sélectionner2 Champs'
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Mesure sélectionner2 Champs'
+				isHidden
+				lineageTag: 644097c6-7ea0-43ba-a7ca-eca2deb62253
+				summarizeBy: none
+				sourceColumn: [Value2]
+				sortByColumn: 'Mesure sélectionner2 Commande'
+
+				extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Mesure sélectionner2 Commande'
+				isHidden
+				formatString: 0
+				lineageTag: b91c71ec-11c4-4e5b-8c9a-bc3c98290da2
+				summarizeBy: sum
+				sourceColumn: [Value3]
+
+				annotation SummarizationSetBy = Automatic
+
+			partition 'Mesure sélectionner2' = calculated
+				mode: import
+				source =
+						{
+						    ("Prix Moyen m2", NAMEOF('Mesures'[Prix Moyen m2]), 0),
+						    ("Moyenne IRL", NAMEOF('Mesures'[Moyenne IRL]), 1)
+						}
+
+			annotation PBI_Id = 844761558b794f93947bc011bb887239
+
+		table Paramètre
+			lineageTag: ca92015a-34c2-45a6-9597-07ede95a907e
+
+			column Paramètre
+				lineageTag: 8808a528-91b3-41b9-b64e-51ceddedd2fe
+				summarizeBy: none
+				sourceColumn: [Value1]
+				sortByColumn: 'Paramètre Commande'
+
+				relatedColumnDetails
+					groupByColumn: 'Paramètre Champs'
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Paramètre Champs'
+				isHidden
+				lineageTag: a12ae9aa-660c-4e7a-aebc-ff3c58aaf4aa
+				summarizeBy: none
+				sourceColumn: [Value2]
+				sortByColumn: 'Paramètre Commande'
+
+				extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Paramètre Commande'
+				isHidden
+				formatString: 0
+				lineageTag: a42db813-94fa-4529-9388-0db5ef1eda2f
+				summarizeBy: sum
+				sourceColumn: [Value3]
+
+				annotation SummarizationSetBy = Automatic
+
+			partition Paramètre = calculated
+				mode: import
+				source =
+						{
+						    ("Nombres Ventes", NAMEOF('Mesures'[Nombres Ventes]), 0),
+						    ("Prix Moyen", NAMEOF('Mesures'[Prix Moyen]), 1)
+						}
+
+			annotation PBI_Id = 39ddf1dbb8cf45d6bd4761cb569fbb4c
+
+		relationship a94221a6-1408-9f81-5471-b3400337190a
+			fromColumn: Fait_Ventes.'Date Transaction'
+			toColumn: 'Dim Date'.Date
+
+		relationship fa7d2fe9-1c9a-0eef-4f25-082c49f15287
+			fromColumn: 'Fait Emprunts'.date
+			toColumn: 'Dim Date'.Date
+
+		relationship edb8faec-419a-86c0-4db7-b6caa80a49a7
+			fromColumn: 'Dim IRL'.Date
+			toColumn: 'Dim Date'.Date
+
+		relationship 2c20fa78-e413-9097-d3d1-588eb7e690f7
+			fromColumn: 'Fait Loyers'.id_ville
+			toColumn: 'Dim Géographie'.id_ville
+
+		relationship 2d8a232d-d0f9-6365-d093-a9997fca936b
+			fromColumn: 'Fait parc_immobilier'.id_ville
+			toColumn: 'Dim Géographie'.id_ville
+
+		relationship dc745eab-3d82-a036-5be9-aecac0d3d9f5
+			fromColumn: 'Fait Foyers Fiscaux'.id_ville
+			toColumn: 'Dim Géographie'.id_ville
+
+		relationship 4a5d3a5d-da71-d3f1-54ae-235ed2353724
+			fromColumn: Fait_Ventes.'ID Ville'
+			toColumn: 'Dim Géographie'.id_ville
+
+		relationship 262a5744-ff0d-1c84-ffb7-95892d9b2833
+			fromColumn: 'Fait Foyers Fiscaux'.date
+			toColumn: 'Dim Date'.Date
+
+		relationship 5d3ef2db-f493-5873-689a-ea33b46b3ebe
+			fromColumn: 'Fait Loyers'.date
+			toColumn: 'Dim Date'.Date
+
+		relationship 69341062-4eca-1ca1-c99a-475ae9123642
+			fromColumn: 'Fait parc_immobilier'.date
+			toColumn: 'Dim Date'.Date
+
+		relationship 40adfcb8-0e73-e3ab-b3a1-5b9717a150b8
+			fromColumn: 'Fait taux_interet'.date
+			toColumn: 'Dim Date'.Date
+
+		relationship a4878c55-1486-456f-a210-b62b6b71f4a5
+			joinOnDateBehavior: datePartOnly
+			fromColumn: 'Dim Date'.Date
+			toColumn: LocalDateTable_98edf69c-961a-4c7f-80ad-8261e4bff3e8.Date
+
+		relationship 67144cef-ac3c-00ff-ca53-02ace653c655
+			fromColumn: 'Fait taux_endettement'.date
+			toColumn: 'Dim Date'.Date
+
+		cultureInfo fr-FR
+
+			linguisticMetadata = {"Version":"4.1.0","Language":"en-US","Entities":{"fait_vente":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes"}},"State":"Generated","Terms":[{"fait vente":{"State":"Generated"}},{"Fait_Ventes":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_vente.ID_transaction":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"ID Transaction"}},"State":"Generated","Terms":[{"ID transaction":{"State":"Generated"}},{"transaction":{"State":"Generated","Weight":0.97}},{"identification transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"id operation":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.5}},{"operation":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"id deal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"id business":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"id contract":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"id matter":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}}]},"fait_vente.date_transaction":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Date Transaction"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date transaction":{"State":"Generated"}},{"date":{"State":"Generated","Weight":0.7}},{"transaction":{"State":"Generated","Weight":0.97}},{"moment transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period transaction":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"date operation":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.5}},{"operation":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"date deal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"date business":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"date contract":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"date matter":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}},{"deal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"business":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}}],"SemanticType":"Time"},"fait_vente.prix":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Prix"}},"State":"Generated","Terms":[{"prix":{"State":"Generated"}}]},"fait_vente.département":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Département"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"département":{"State":"Generated"}}]},"fait_vente.ID_ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"ID Ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"ID ville":{"State":"Generated"}},{"identification ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"fait_vente.ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"ville":{"State":"Generated"}}]},"fait_vente.code_postal":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Code Postal"}},"State":"Generated","Terms":[{"code postal":{"State":"Generated"}},{"id postal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.75}},{"key postal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}}]},"fait_vente.adresse":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Adresse"}},"State":"Generated","Terms":[{"adresse":{"State":"Generated"}}]},"fait_vente.type_batiment":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Type Batiment"}},"State":"Generated","Terms":[{"type batiment":{"State":"Generated"}},{"category batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"genre batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"manner batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"variety batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"brand batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"class batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"kind batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"style batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"form batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"grouping batiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"fait_vente.vefa":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"vefa"}},"State":"Generated","Terms":[{"vefa":{"State":"Generated"}}]},"fait_vente.nombres_piéce":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Nombres Piéces"}},"State":"Generated","Terms":[{"nombres piéce":{"State":"Generated"}},{"nombre piéce":{"Type":"Noun","State":"Generated","Weight":0.78}}]},"fait_vente.surface_habitable":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Surface Habitable"}},"State":"Generated","Terms":[{"surface habitable":{"State":"Generated"}},{"facade habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.475}},{"façade habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.475}},{"exterior habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"shell habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"side habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"top habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"outside habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"plane habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}},{"face habitable":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.461}}]},"fait_vente.ID_parcelle_cadastre":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"ID Parcelle Cadastre"}},"State":"Generated","Terms":[{"ID parcelle cadastre":{"State":"Generated"}},{"identification parcelle cadastre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"identity parcelle cadastre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"identifier parcelle cadastre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"credential parcelle cadastre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}}]},"fait_vente.latitude":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Latitude"}},"State":"Generated","Terms":[{"latitude":{"State":"Generated"}},{"leeway":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"freedom":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"autonomy":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"liberty":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"opportunity":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"room":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"scope":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"space":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"rope":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"location":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}}]},"fait_vente.longitude":{"Definition":{"Binding":{"ConceptualEntity":"Fait_Ventes","ConceptualProperty":"Longitude"}},"State":"Generated","Terms":[{"longitude":{"State":"Generated"}}]},"fait_foyers_fiscaux":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"}},"State":"Generated","Terms":[{"fait foyers fiscaux":{"State":"Generated"}},{"fait foyer fiscaux":{"Type":"Noun","State":"Generated","Weight":0.78}}]},"fait_foyers_fiscaux.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"date"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}]},"fait_foyers_fiscaux.departement":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"departement"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"departement":{"State":"Generated"}}]},"fait_foyers_fiscaux.id_ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"id_ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"id ville":{"State":"Generated"}},{"id_ville":{"Type":"Noun","State":"Generated","Weight":0.99}},{"identification ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"fait_foyers_fiscaux.ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"ville":{"State":"Generated"}}]},"fait_foyers_fiscaux.n_foyers_fiscaux":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"n_foyers_fiscaux"}},"State":"Generated","Terms":[{"n foyers fiscaux":{"State":"Generated"}},{"n foyer fiscaux":{"Type":"Noun","State":"Generated","Weight":0.78}},{"n_foyers_fiscaux":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_foyers_fiscaux.revenu_fiscal_moyen":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"revenu_fiscal_moyen"}},"State":"Generated","Terms":[{"revenu fiscal moyen":{"State":"Generated"}},{"revenu_fiscal_moyen":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_foyers_fiscaux.montant_impot_moyen":{"Definition":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux","ConceptualProperty":"montant_impot_moyen"}},"State":"Generated","Terms":[{"montant impot moyen":{"State":"Generated"}},{"montant_impot_moyen":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"dim_IRL":{"Definition":{"Binding":{"ConceptualEntity":"Dim IRL"}},"State":"Generated","Terms":[{"dim IRL":{"State":"Generated"}}]},"dim_IRL.date":{"Definition":{"Binding":{"ConceptualEntity":"Dim IRL","ConceptualProperty":"Date"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date":{"Type":"Noun","State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"dim_IRL.irl":{"Definition":{"Binding":{"ConceptualEntity":"Dim IRL","ConceptualProperty":"IRL"}},"State":"Generated","Terms":[{"irl":{"State":"Generated"}}]},"fait_loyer":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers"}},"State":"Generated","Terms":[{"fait loyer":{"State":"Generated"}}]},"fait_loyer.departement":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"departement"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"departement":{"State":"Generated"}}]},"fait_loyer.id_ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"id_ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"id ville":{"State":"Generated"}},{"id_ville":{"Type":"Noun","State":"Generated","Weight":0.99}},{"identification ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"fait_loyer.ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"ville":{"State":"Generated"}}]},"fait_loyer.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"date"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date":{"Type":"Noun","State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"fait_loyer.loyer_m_2_appartement":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"loyer_m2_appartement"}},"State":"Generated","Terms":[{"loyer m 2 appartement":{"State":"Generated"}},{"loyer_m2_appartement":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_loyer.loyer_m_2_maison":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"loyer_m2_maison"}},"State":"Generated","Terms":[{"loyer m 2 maison":{"State":"Generated"}},{"loyer_m2_maison":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_loyer.loyer_moyen_global":{"Definition":{"Binding":{"ConceptualEntity":"Fait Loyers","ConceptualProperty":"Loyer Moyen Global"}},"State":"Generated","Terms":[{"loyer moyen global":{"State":"Generated"}}]},"fait_parc_immobilier":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier"}},"State":"Generated","Terms":[{"fait parc_immobilier":{"State":"Generated"}}]},"fait_parc_immobilier.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier","ConceptualProperty":"date"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}]},"fait_parc_immobilier.departement":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier","ConceptualProperty":"departement"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"departement":{"State":"Generated"}}]},"fait_parc_immobilier.id_ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier","ConceptualProperty":"id_ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"id ville":{"State":"Generated"}},{"id_ville":{"Type":"Noun","State":"Generated","Weight":0.99}},{"identification ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"fait_parc_immobilier.ville":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier","ConceptualProperty":"ville"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"ville":{"State":"Generated"}}]},"fait_parc_immobilier.n_logements_vacant":{"Definition":{"Binding":{"ConceptualEntity":"Fait parc_immobilier","ConceptualProperty":"n_logements_vacants"}},"State":"Generated","Terms":[{"n logements vacant":{"State":"Generated"}},{"n logement vacant":{"Type":"Noun","State":"Generated","Weight":0.78}},{"n_logements_vacants":{"Type":"Noun","State":"Generated","Weight":0.99}},{"Nombres Logements Vacants":{"State":"Suggested","Source":{"Type":"External","Agent":"PowerBI.VisualColumnRename"},"Weight":0.9}}]},"fait_taux_endettement":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_endettement"}},"State":"Generated","Terms":[{"fait taux_endettement":{"State":"Generated"}}]},"fait_taux_endettement.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_endettement","ConceptualProperty":"date"}},"State":"Generated","Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"fait_taux_endettement.taux_endettement":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_endettement","ConceptualProperty":"taux_endettement"}},"State":"Generated","Terms":[{"taux endettement":{"State":"Generated"}},{"taux_endettement":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"fait_taux_interet":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_interet"}},"State":"Generated","Terms":[{"fait taux_interet":{"State":"Generated"}}]},"fait_taux_interet.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_interet","ConceptualProperty":"date"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"date":{"Type":"Noun","State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"fait_taux_interet.taux":{"Definition":{"Binding":{"ConceptualEntity":"Fait taux_interet","ConceptualProperty":"taux"}},"State":"Generated","Terms":[{"taux":{"State":"Generated"}}]},"fait_emprunt":{"Definition":{"Binding":{"ConceptualEntity":"Fait Emprunts"}},"State":"Generated","Terms":[{"fait emprunt":{"State":"Generated"}}]},"fait_emprunt.date":{"Definition":{"Binding":{"ConceptualEntity":"Fait Emprunts","ConceptualProperty":"date"}},"State":"Generated","Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"fait_emprunt.emprunts_M":{"Definition":{"Binding":{"ConceptualEntity":"Fait Emprunts","ConceptualProperty":"emprunts_M€"}},"State":"Generated","Terms":[{"emprunts_M€":{"State":"Generated"}}]},"dim_date":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date"}},"State":"Generated","Terms":[{"dim date":{"State":"Generated"}},{"dim moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.75}},{"dim period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}}]},"dim_date.date":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","ConceptualProperty":"Date"}},"State":"Generated","Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"dim_date.date.hiérarchie_de_date":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","VariationSource":"Date","VariationSet":"Variation","Hierarchy":"Hiérarchie de dates"}},"State":"Generated","Terms":[{"hiérarchie de date":{"State":"Generated"}},{"hiérarchie de moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.762}},{"hiérarchie de period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}}]},"dim_date.date.année":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","VariationSource":"Date","VariationSet":"Variation","Hierarchy":"Hiérarchie de dates","HierarchyLevel":"Année"}},"State":"Generated","Terms":[{"année":{"State":"Generated"}},{"date année":{"State":"Generated"}},{"moment année":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period année":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"dim_date.date.trimestre":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","VariationSource":"Date","VariationSet":"Variation","Hierarchy":"Hiérarchie de dates","HierarchyLevel":"Trimestre"}},"State":"Generated","Terms":[{"trimestre":{"State":"Generated"}},{"date trimestre":{"State":"Generated"}},{"moment trimestre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period trimestre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"dim_date.date.mois":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","VariationSource":"Date","VariationSet":"Variation","Hierarchy":"Hiérarchie de dates","HierarchyLevel":"Mois"}},"State":"Generated","Terms":[{"mois":{"State":"Generated"}},{"date mois":{"State":"Generated"}},{"moment mois":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period mois":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"dim_date.date.jour":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","VariationSource":"Date","VariationSet":"Variation","Hierarchy":"Hiérarchie de dates","HierarchyLevel":"Jour"}},"State":"Generated","Terms":[{"jour":{"State":"Generated"}},{"date jour":{"State":"Generated"}},{"moment jour":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period jour":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"dim_date.année":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","ConceptualProperty":"Année"}},"State":"Generated","Terms":[{"année":{"State":"Generated"}}]},"dim_date.mois_num":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","ConceptualProperty":"Mois Num"}},"State":"Generated","Terms":[{"mois num":{"State":"Generated"}},{"mois number":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}}]},"dim_date.nom_mois":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","ConceptualProperty":"Nom Mois"}},"State":"Generated","Terms":[{"nom mois":{"State":"Generated"}}]},"dim_date.trimestre":{"Definition":{"Binding":{"ConceptualEntity":"Dim Date","ConceptualProperty":"Trimestre"}},"State":"Generated","Terms":[{"trimestre":{"State":"Generated"}}]},"dim_géographie":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie"}},"State":"Generated","Terms":[{"dim géographie":{"State":"Generated"}}]},"dim_géographie.id_ville":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie","ConceptualProperty":"id_ville"}},"State":"Generated","Terms":[{"id ville":{"State":"Generated"}},{"id_ville":{"Type":"Noun","State":"Generated","Weight":0.99}},{"identification ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identity ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"identifier ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"credential ville":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"dim_géographie.ville":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie","ConceptualProperty":"ville"}},"State":"Generated","Terms":[{"ville":{"State":"Generated"}}]},"dim_géographie.numéro_département":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie","ConceptualProperty":"Numéro Département"}},"State":"Generated","Terms":[{"numéro département":{"State":"Generated"}}]},"dim_géographie.département":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie","ConceptualProperty":"Département"}},"State":"Generated","Terms":[{"département":{"State":"Generated"}}]},"dim_géographie.région":{"Definition":{"Binding":{"ConceptualEntity":"Dim Géographie","ConceptualProperty":"Région"}},"State":"Generated","Terms":[{"région":{"State":"Generated"}}]},"mesure":{"Definition":{"Binding":{"ConceptualEntity":"Mesures"}},"State":"Generated","Terms":[{"mesure":{"State":"Generated"}}]},"mesure.surface_habitable_moyenne":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Surface Habitable Moyenne"}},"State":"Generated","Terms":[{"surface habitable moyenne":{"State":"Generated"}}]},"mesure.prix_moyen":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Prix Moyen"}},"State":"Generated","Terms":[{"prix moyen":{"State":"Generated"}}]},"mesure.nombres_ventes":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Nombres Ventes"}},"State":"Generated","Terms":[{"nombres ventes":{"State":"Generated"}}]},"mesure.emprunt_moyen":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Emprunt Moyen"}},"State":"Generated","Terms":[{"emprunt moyen":{"State":"Generated"}}]},"mesure.montant_impot_moyen":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Montant Impot Moyen"}},"State":"Generated","Terms":[{"montant impot moyen":{"State":"Generated"}}]},"mesure.nombre_foyer_fiscaux":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Nombre Foyer Fiscaux"}},"State":"Generated","Terms":[{"nombre foyer fiscaux":{"State":"Generated"}}]},"mesure.moyenne_IRL":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Moyenne IRL"}},"State":"Generated","Terms":[{"moyenne IRL":{"State":"Generated"}}]},"mesure.loyer_max_m2_appartement":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Max m2 Appartement"}},"State":"Generated","Terms":[{"loyer max m2 appartement":{"State":"Generated"}},{"loyer maximum m2 appartement":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"mesure.loyer_max_m2_maison":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Max m2 Maison"}},"State":"Generated","Terms":[{"loyer max m2 maison":{"State":"Generated"}},{"loyer maximum m2 maison":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"mesure.loyer_min_m2_appartement":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Min m2 Appartement"}},"State":"Generated","Terms":[{"loyer min m2 appartement":{"State":"Generated"}},{"loyer minimum m2 appartement":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"mesure.loyer_min_m2_maison":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Min m2 Maison"}},"State":"Generated","Terms":[{"loyer min m2 maison":{"State":"Generated"}},{"loyer minimum m2 maison":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"mesure.loyer_moyen_m2_appartement":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Moyen m2 Appartement"}},"State":"Generated","Terms":[{"loyer moyen m2 appartement":{"State":"Generated"}}]},"mesure.loyer_moyen_m2_maison":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Loyer Moyen m2 Maison"}},"State":"Generated","Terms":[{"loyer moyen m2 maison":{"State":"Generated"}}]},"mesure.prix_moyen_m2":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Prix Moyen m2"}},"State":"Generated","Terms":[{"prix moyen m2":{"State":"Generated"}}]},"mesure.moyenne_taux_endettement_":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Moyenne Taux Endettement %"}},"State":"Generated","Terms":[{"moyenne taux endettement %":{"State":"Generated"}},{"moyenne taux endettement percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"moyenne taux endettement pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"mesure.moyenne_taux_interet":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Moyenne Taux Interet"}},"State":"Generated","Terms":[{"moyenne taux interet":{"State":"Generated"}}]},"mesure.moyenne_logement_vacant":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Moyenne Logement Vacant"}},"State":"Generated","Terms":[{"moyenne logement vacant":{"State":"Generated"}}]},"mesure.evolution_prix_m2_":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Evolution Prix m2 %"}},"State":"Generated","Terms":[{"evolution prix m2 %":{"State":"Generated"}},{"evolution prix m2 percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"evolution prix m2 pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"mesure.moyenne_taux_interet_":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Moyenne Taux Interet %"}},"State":"Generated","Terms":[{"moyenne taux interet %":{"State":"Generated"}},{"moyenne taux interet percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"moyenne taux interet pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"mesure.CA_total":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"CA Total"}},"State":"Generated","Terms":[{"CA total":{"State":"Generated"}},{"ca aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}},{"ca overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}}]},"mesure.couleur_dynamique":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Couleur Dynamique"}},"State":"Generated","Terms":[{"couleur dynamique":{"State":"Generated"}}]},"mesure.liste_des_valeurs_de_région":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Liste des valeurs de Région"}},"State":"Generated","Terms":[{"liste des valeurs de région":{"State":"Generated"}}]},"mesure.liste_des_valeurs_de_nom_département":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Liste des valeurs de Nom Département"}},"State":"Generated","Terms":[{"liste des valeurs de nom département":{"State":"Generated"}}]},"mesure.titre_dynamique_complet":{"Definition":{"Binding":{"ConceptualEntity":"Mesures","ConceptualProperty":"Titre Dynamique Complet"}},"State":"Generated","Terms":[{"titre dynamique complet":{"State":"Generated"}}]},"mesure_sélectionner":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner"}},"State":"Generated","Terms":[{"mesure sélectionner":{"State":"Generated"}}]},"mesure_sélectionner.mesure_sélectionner":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner","ConceptualProperty":"Mesure sélectionner"}},"State":"Generated","Terms":[{"mesure sélectionner":{"State":"Generated"}},{"mesure sélectionner name":{"State":"Generated"}}],"NameType":"Name"},"mesure_sélectionner.mesure_sélectionner_champs":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner","ConceptualProperty":"Mesure sélectionner Champs"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"mesure sélectionner champs":{"State":"Generated"}},{"mesure sélectionner winner":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner victor":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner titleholder":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner champion":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.492}}]},"mesure_sélectionner.mesure_sélectionner_commande":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner","ConceptualProperty":"Mesure sélectionner Commande"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"mesure sélectionner commande":{"State":"Generated"}}]},"mesure_sélectionner2":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner2"}},"State":"Generated","Terms":[{"mesure sélectionner2":{"State":"Generated"}}]},"mesure_sélectionner2.mesure_sélectionner2":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner2","ConceptualProperty":"Mesure sélectionner2"}},"State":"Generated","Terms":[{"mesure sélectionner2":{"State":"Generated"}},{"mesure sélectionner2 name":{"State":"Generated"}}],"NameType":"Name"},"mesure_sélectionner2.mesure_sélectionner2_champs":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner2","ConceptualProperty":"Mesure sélectionner2 Champs"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"mesure sélectionner2 champs":{"State":"Generated"}},{"mesure sélectionner2 winner":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner2 victor":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner2 titleholder":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.508}},{"mesure sélectionner2 champion":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.492}}]},"mesure_sélectionner2.mesure_sélectionner2_commande":{"Definition":{"Binding":{"ConceptualEntity":"Mesure sélectionner2","ConceptualProperty":"Mesure sélectionner2 Commande"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"mesure sélectionner2 commande":{"State":"Generated"}}]},"paramètre":{"Definition":{"Binding":{"ConceptualEntity":"Paramètre"}},"State":"Generated","Terms":[{"paramètre":{"State":"Generated"}}]},"paramètre.paramètre":{"Definition":{"Binding":{"ConceptualEntity":"Paramètre","ConceptualProperty":"Paramètre"}},"State":"Generated","Terms":[{"paramètre":{"State":"Generated"}},{"paramètre name":{"State":"Generated"}}],"NameType":"Name"},"paramètre.paramètre_champs":{"Definition":{"Binding":{"ConceptualEntity":"Paramètre","ConceptualProperty":"Paramètre Champs"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"paramètre champs":{"State":"Generated"}},{"paramètre winner":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.5}},{"paramètre victor":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.5}},{"paramètre titleholder":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.5}},{"paramètre champion":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.485}}]},"paramètre.paramètre_commande":{"Definition":{"Binding":{"ConceptualEntity":"Paramètre","ConceptualProperty":"Paramètre Commande"}},"State":"Generated","Visibility":{"Value":"Hidden"},"Terms":[{"paramètre commande":{"State":"Generated"}}]}},"Relationships":{"dim_date_date_hiérarchie_de_date_has_dim_date_date_mois":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.hiérarchie_de_date":{"Target":{"Entity":"dim_date.date.hiérarchie_de_date"}},"dim_date.date.mois":{"Target":{"Entity":"dim_date.date.mois"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.hiérarchie_de_date"},"Object":{"Role":"dim_date.date.mois"}},"State":"Generated","Weight":0.99,"ID":"hiérarchie_de_dates_have_moises"}]},"dim_date_date_hiérarchie_de_date_has_dim_date_date_trimestre":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.hiérarchie_de_date":{"Target":{"Entity":"dim_date.date.hiérarchie_de_date"}},"dim_date.date.trimestre":{"Target":{"Entity":"dim_date.date.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.hiérarchie_de_date"},"Object":{"Role":"dim_date.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"hiérarchie_de_dates_have_trimestres"}]},"dim_date_date_hiérarchie_de_date_has_dim_date_date_année":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.hiérarchie_de_date":{"Target":{"Entity":"dim_date.date.hiérarchie_de_date"}},"dim_date.date.année":{"Target":{"Entity":"dim_date.date.année"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.hiérarchie_de_date"},"Object":{"Role":"dim_date.date.année"}},"State":"Generated","Weight":0.99,"ID":"hiérarchie_de_dates_have_années"}]},"dim_date_date_has_hiérarchie_de_date":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date":{"Target":{"Entity":"dim_date.date"}},"dim_date.date.hiérarchie_de_date":{"Target":{"Entity":"dim_date.date.hiérarchie_de_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date"},"Object":{"Role":"dim_date.date.hiérarchie_de_date"}},"State":"Generated","Weight":0.99,"ID":"dates_have_hiérarchie_de_dates"}]},"fait_emprunt_has_dim_date":{"Binding":{"ConceptualEntity":"Fait Emprunts"},"State":"Generated","Roles":{"fait_emprunt":{"Target":{"Entity":"fait_emprunt"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_emprunt"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_emprunts_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_emprunt"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_emprunts"}]},"fait_taux_interet_has_dim_date":{"Binding":{"ConceptualEntity":"Fait taux_interet"},"State":"Generated","Roles":{"fait_taux_interet":{"Target":{"Entity":"fait_taux_interet"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_interet"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_interets_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_taux_interet"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_taux_interets"}]},"fait_taux_endettement_has_dim_date":{"Binding":{"ConceptualEntity":"Fait taux_endettement"},"State":"Generated","Roles":{"fait_taux_endettement":{"Target":{"Entity":"fait_taux_endettement"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_endettement"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_endettements_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_taux_endettement"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_taux_endettements"}]},"fait_parc_immobilier_has_dim_date":{"Binding":{"ConceptualEntity":"Fait parc_immobilier"},"State":"Generated","Roles":{"fait_parc_immobilier":{"Target":{"Entity":"fait_parc_immobilier"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_parc_immobilier"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_parc_immobiliers_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_parc_immobilier"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_parc_immobiliers"}]},"fait_parc_immobilier_has_dim_géographie":{"Binding":{"ConceptualEntity":"Fait parc_immobilier"},"State":"Generated","Roles":{"fait_parc_immobilier":{"Target":{"Entity":"fait_parc_immobilier"}},"dim_géographie":{"Target":{"Entity":"dim_géographie"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_parc_immobilier"},"Object":{"Role":"dim_géographie"}},"State":"Generated","Weight":0.99,"ID":"fait_parc_immobiliers_have_dim_géographies"},{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"fait_parc_immobilier"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_fait_parc_immobiliers"}]},"fait_loyer_has_dim_date":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_loyer"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_loyers"}]},"fait_loyer_has_dim_géographie":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"dim_géographie":{"Target":{"Entity":"dim_géographie"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"dim_géographie"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_dim_géographies"},{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"fait_loyer"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_fait_loyers"}]},"dim_IRL_has_dim_date":{"Binding":{"ConceptualEntity":"Dim IRL"},"State":"Generated","Roles":{"dim_IRL":{"Target":{"Entity":"dim_IRL"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_IRL"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"dim_IRLs_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_IRL"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_dim_IRLs"}]},"fait_foyers_fiscaux_has_dim_date":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"dim_date":{"Target":{"Entity":"dim_date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_foyers_fiscaux"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_foyers_fiscauxes"}]},"fait_foyers_fiscaux_has_dim_géographie":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"dim_géographie":{"Target":{"Entity":"dim_géographie"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"dim_géographie"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_dim_géographies"},{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"fait_foyers_fiscaux"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_fait_foyers_fiscauxes"}]},"fait_vente_has_dim_géographie":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"dim_géographie":{"Target":{"Entity":"dim_géographie"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"dim_géographie"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_dim_géographies"},{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"fait_vente"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_fait_ventes"}]},"fait_vente_has_dim_date":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"dim_date":{"Target":{"Entity":"dim_date"},"Nouns":[{"date transaction":{"State":"Generated"}},{"transaction":{"State":"Generated"}}]}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"dim_date"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_dim_dates"},{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"fait_vente"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_fait_ventes"}]},"paramètre_has_paramètre":{"Binding":{"ConceptualEntity":"Paramètre"},"State":"Generated","Roles":{"paramètre":{"Target":{"Entity":"paramètre"}},"paramètre.paramètre":{"Target":{"Entity":"paramètre.paramètre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"paramètre"},"Object":{"Role":"paramètre.paramètre"}},"State":"Generated","Weight":0.99,"ID":"paramètres_have_paramètres"},{"Name":{"Subject":{"Role":"paramètre"},"Name":{"Role":"paramètre.paramètre"}},"State":"Generated","Weight":0.99,"ID":"paramètres_are_names_IDs_of_paramètres"}]},"mesure_sélectionner2_has_mesure_sélectionner2":{"Binding":{"ConceptualEntity":"Mesure sélectionner2"},"State":"Generated","Roles":{"mesure_sélectionner2":{"Target":{"Entity":"mesure_sélectionner2"}},"mesure_sélectionner2.mesure_sélectionner2":{"Target":{"Entity":"mesure_sélectionner2.mesure_sélectionner2"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"mesure_sélectionner2"},"Object":{"Role":"mesure_sélectionner2.mesure_sélectionner2"}},"State":"Generated","Weight":0.99,"ID":"mesure_sélectionner2_have_mesure_sélectionner2"},{"Name":{"Subject":{"Role":"mesure_sélectionner2"},"Name":{"Role":"mesure_sélectionner2.mesure_sélectionner2"}},"State":"Generated","Weight":0.99,"ID":"mesure_sélectionner2_are_names_IDs_of_mesure_sélectionner2"}]},"mesure_sélectionner_has_mesure_sélectionner":{"Binding":{"ConceptualEntity":"Mesure sélectionner"},"State":"Generated","Roles":{"mesure_sélectionner":{"Target":{"Entity":"mesure_sélectionner"}},"mesure_sélectionner.mesure_sélectionner":{"Target":{"Entity":"mesure_sélectionner.mesure_sélectionner"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"mesure_sélectionner"},"Object":{"Role":"mesure_sélectionner.mesure_sélectionner"}},"State":"Generated","Weight":0.99,"ID":"mesure_sélectionners_have_mesure_sélectionners"},{"Name":{"Subject":{"Role":"mesure_sélectionner"},"Name":{"Role":"mesure_sélectionner.mesure_sélectionner"}},"State":"Generated","Weight":0.99,"ID":"mesure_sélectionners_are_names_IDs_of_mesure_sélectionners"}]},"dim_géographie_has_mesure_titre_dynamique_complet":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"mesure.titre_dynamique_complet":{"Target":{"Entity":"mesure.titre_dynamique_complet"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"mesure.titre_dynamique_complet"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_titre_dynamique_complet"}]},"dim_géographie_has_mesure_liste_des_valeurs_de_nom_département":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"mesure.liste_des_valeurs_de_nom_département":{"Target":{"Entity":"mesure.liste_des_valeurs_de_nom_département"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"mesure.liste_des_valeurs_de_nom_département"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_liste_des_valeurs_de_nom_département"}]},"dim_géographie_has_mesure_liste_des_valeurs_de_région":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"mesure.liste_des_valeurs_de_région":{"Target":{"Entity":"mesure.liste_des_valeurs_de_région"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"mesure.liste_des_valeurs_de_région"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_liste_des_valeurs_de_région"}]},"mesure_sélectionner_has_mesure_couleur_dynamique":{"Binding":{"ConceptualEntity":"Mesure sélectionner"},"State":"Generated","Roles":{"mesure_sélectionner":{"Target":{"Entity":"mesure_sélectionner"}},"mesure.couleur_dynamique":{"Target":{"Entity":"mesure.couleur_dynamique"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"mesure_sélectionner"},"Object":{"Role":"mesure.couleur_dynamique"}},"State":"Generated","Weight":0.99,"ID":"mesure_sélectionners_have_couleur_dynamique"}]},"fait_vente_has_mesure_CA_total":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.CA_total":{"Target":{"Entity":"mesure.CA_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.CA_total"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_CA_total"}]},"fait_taux_interet_has_mesure_moyenne_taux_interet_":{"Binding":{"ConceptualEntity":"Fait taux_interet"},"State":"Generated","Roles":{"fait_taux_interet":{"Target":{"Entity":"fait_taux_interet"}},"mesure.moyenne_taux_interet_":{"Target":{"Entity":"mesure.moyenne_taux_interet_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_interet"},"Object":{"Role":"mesure.moyenne_taux_interet_"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_interets_have_moyenne_taux_interet_"}]},"fait_vente_has_mesure_evolution_prix_m2_":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.evolution_prix_m2_":{"Target":{"Entity":"mesure.evolution_prix_m2_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.evolution_prix_m2_"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_evolution_prix_m2_"}]},"fait_parc_immobilier_has_mesure_moyenne_logement_vacant":{"Binding":{"ConceptualEntity":"Fait parc_immobilier"},"State":"Generated","Roles":{"fait_parc_immobilier":{"Target":{"Entity":"fait_parc_immobilier"}},"mesure.moyenne_logement_vacant":{"Target":{"Entity":"mesure.moyenne_logement_vacant"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_parc_immobilier"},"Object":{"Role":"mesure.moyenne_logement_vacant"}},"State":"Generated","Weight":0.99,"ID":"fait_parc_immobiliers_have_moyenne_logement_vacant"}]},"fait_taux_interet_has_mesure_moyenne_taux_interet":{"Binding":{"ConceptualEntity":"Fait taux_interet"},"State":"Generated","Roles":{"fait_taux_interet":{"Target":{"Entity":"fait_taux_interet"}},"mesure.moyenne_taux_interet":{"Target":{"Entity":"mesure.moyenne_taux_interet"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_interet"},"Object":{"Role":"mesure.moyenne_taux_interet"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_interets_have_moyenne_taux_interet"}]},"fait_taux_endettement_has_mesure_moyenne_taux_endettement_":{"Binding":{"ConceptualEntity":"Fait taux_endettement"},"State":"Generated","Roles":{"fait_taux_endettement":{"Target":{"Entity":"fait_taux_endettement"}},"mesure.moyenne_taux_endettement_":{"Target":{"Entity":"mesure.moyenne_taux_endettement_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_endettement"},"Object":{"Role":"mesure.moyenne_taux_endettement_"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_endettements_have_moyenne_taux_endettement_"}]},"fait_vente_has_mesure_prix_moyen_m2":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.prix_moyen_m2":{"Target":{"Entity":"mesure.prix_moyen_m2"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.prix_moyen_m2"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_prix_moyen_m2"}]},"fait_loyer_has_mesure_loyer_moyen_m2_maison":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_moyen_m2_maison":{"Target":{"Entity":"mesure.loyer_moyen_m2_maison"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_moyen_m2_maison"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_moyen_m2_maison"}]},"fait_loyer_has_mesure_loyer_moyen_m2_appartement":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_moyen_m2_appartement":{"Target":{"Entity":"mesure.loyer_moyen_m2_appartement"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_moyen_m2_appartement"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_moyen_m2_appartement"}]},"fait_loyer_has_mesure_loyer_min_m2_maison":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_min_m2_maison":{"Target":{"Entity":"mesure.loyer_min_m2_maison"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_min_m2_maison"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_min_m2_maison"}]},"fait_loyer_has_mesure_loyer_min_m2_appartement":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_min_m2_appartement":{"Target":{"Entity":"mesure.loyer_min_m2_appartement"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_min_m2_appartement"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_min_m2_appartement"}]},"fait_loyer_has_mesure_loyer_max_m2_maison":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_max_m2_maison":{"Target":{"Entity":"mesure.loyer_max_m2_maison"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_max_m2_maison"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_max_m2_maison"}]},"fait_loyer_has_mesure_loyer_max_m2_appartement":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"mesure.loyer_max_m2_appartement":{"Target":{"Entity":"mesure.loyer_max_m2_appartement"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"mesure.loyer_max_m2_appartement"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_max_m2_appartement"}]},"dim_IRL_has_mesure_moyenne_IRL":{"Binding":{"ConceptualEntity":"Dim IRL"},"State":"Generated","Roles":{"dim_IRL":{"Target":{"Entity":"dim_IRL"}},"mesure.moyenne_IRL":{"Target":{"Entity":"mesure.moyenne_IRL"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_IRL"},"Object":{"Role":"mesure.moyenne_IRL"}},"State":"Generated","Weight":0.99,"ID":"dim_IRLs_have_moyenne_IRL"}]},"fait_foyers_fiscaux_has_mesure_nombre_foyer_fiscaux":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"mesure.nombre_foyer_fiscaux":{"Target":{"Entity":"mesure.nombre_foyer_fiscaux"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"mesure.nombre_foyer_fiscaux"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_nombre_foyer_fiscaux"}]},"fait_foyers_fiscaux_has_mesure_montant_impot_moyen":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"mesure.montant_impot_moyen":{"Target":{"Entity":"mesure.montant_impot_moyen"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"mesure.montant_impot_moyen"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_montant_impot_moyen"}]},"fait_emprunt_has_mesure_emprunt_moyen":{"Binding":{"ConceptualEntity":"Fait Emprunts"},"State":"Generated","Roles":{"fait_emprunt":{"Target":{"Entity":"fait_emprunt"}},"mesure.emprunt_moyen":{"Target":{"Entity":"mesure.emprunt_moyen"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_emprunt"},"Object":{"Role":"mesure.emprunt_moyen"}},"State":"Generated","Weight":0.99,"ID":"fait_emprunts_have_emprunt_moyen"}]},"fait_vente_has_mesure_nombres_ventes":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.nombres_ventes":{"Target":{"Entity":"mesure.nombres_ventes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.nombres_ventes"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_nombres_ventes"}]},"fait_vente_has_mesure_prix_moyen":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.prix_moyen":{"Target":{"Entity":"mesure.prix_moyen"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.prix_moyen"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_prix_moyen"}]},"fait_vente_has_mesure_surface_habitable_moyenne":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"mesure.surface_habitable_moyenne":{"Target":{"Entity":"mesure.surface_habitable_moyenne"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"mesure.surface_habitable_moyenne"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_surface_habitable_moyenne"}]},"dim_géographie_has_région":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"dim_géographie.région":{"Target":{"Entity":"dim_géographie.région"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"dim_géographie.région"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_régions"}]},"dim_géographie_has_département":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"dim_géographie.département":{"Target":{"Entity":"dim_géographie.département"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"dim_géographie.département"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_départements"}]},"dim_géographie_has_numéro_département":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"dim_géographie.numéro_département":{"Target":{"Entity":"dim_géographie.numéro_département"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"dim_géographie.numéro_département"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_numéro_départements"}]},"dim_géographie_has_ville":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"dim_géographie.ville":{"Target":{"Entity":"dim_géographie.ville"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"dim_géographie.ville"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_ville"}]},"dim_géographie_has_id_ville":{"Binding":{"ConceptualEntity":"Dim Géographie"},"State":"Generated","Roles":{"dim_géographie":{"Target":{"Entity":"dim_géographie"}},"dim_géographie.id_ville":{"Target":{"Entity":"dim_géographie.id_ville"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_géographie"},"Object":{"Role":"dim_géographie.id_ville"}},"State":"Generated","Weight":0.99,"ID":"dim_géographies_have_id_ville"}]},"dim_date_has_trimestre":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date":{"Target":{"Entity":"dim_date"}},"dim_date.trimestre":{"Target":{"Entity":"dim_date.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_trimestres"}]},"dim_date_has_nom_mois":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date":{"Target":{"Entity":"dim_date"}},"dim_date.nom_mois":{"Target":{"Entity":"dim_date.nom_mois"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_date.nom_mois"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_nom_moises"}]},"dim_date_has_mois_num":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date":{"Target":{"Entity":"dim_date"}},"dim_date.mois_num":{"Target":{"Entity":"dim_date.mois_num"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_date.mois_num"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_mois_nums"}]},"dim_date_has_année":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date":{"Target":{"Entity":"dim_date"}},"dim_date.année":{"Target":{"Entity":"dim_date.année"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_date.année"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_années"}]},"dim_date_has_date":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date":{"Target":{"Entity":"dim_date"}},"dim_date.date":{"Target":{"Entity":"dim_date.date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date"},"Object":{"Role":"dim_date.date"}},"State":"Generated","Weight":0.99,"ID":"dim_dates_have_dates"}]},"fait_emprunt_has_emprunts_M":{"Binding":{"ConceptualEntity":"Fait Emprunts"},"State":"Generated","Roles":{"fait_emprunt":{"Target":{"Entity":"fait_emprunt"}},"fait_emprunt.emprunts_M":{"Target":{"Entity":"fait_emprunt.emprunts_M"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_emprunt"},"Object":{"Role":"fait_emprunt.emprunts_M"}},"State":"Generated","Weight":0.99,"ID":"fait_emprunts_have_emprunts_M"},{"Adjective":{"Subject":{"Role":"fait_emprunt"},"Adjectives":[{"expensive":{"State":"Generated"}}],"Antonyms":[{"cheap":{"State":"Generated"}}],"Measurement":{"Role":"fait_emprunt.emprunts_M"}},"State":"Generated","Weight":0.99,"ID":"emprunts_M_indicates_how_expensive_fait_emprunts_are"}]},"fait_emprunt_has_date":{"Binding":{"ConceptualEntity":"Fait Emprunts"},"State":"Generated","Roles":{"fait_emprunt":{"Target":{"Entity":"fait_emprunt"}},"fait_emprunt.date":{"Target":{"Entity":"fait_emprunt.date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_emprunt"},"Object":{"Role":"fait_emprunt.date"}},"State":"Generated","Weight":0.99,"ID":"fait_emprunts_have_dates"}]},"fait_taux_interet_has_taux":{"Binding":{"ConceptualEntity":"Fait taux_interet"},"State":"Generated","Roles":{"fait_taux_interet":{"Target":{"Entity":"fait_taux_interet"}},"fait_taux_interet.taux":{"Target":{"Entity":"fait_taux_interet.taux"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_interet"},"Object":{"Role":"fait_taux_interet.taux"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_interets_have_tauxes"}]},"fait_taux_endettement_has_taux_endettement":{"Binding":{"ConceptualEntity":"Fait taux_endettement"},"State":"Generated","Roles":{"fait_taux_endettement":{"Target":{"Entity":"fait_taux_endettement"}},"fait_taux_endettement.taux_endettement":{"Target":{"Entity":"fait_taux_endettement.taux_endettement"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_endettement"},"Object":{"Role":"fait_taux_endettement.taux_endettement"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_endettements_have_taux_endettements"}]},"fait_taux_endettement_has_date":{"Binding":{"ConceptualEntity":"Fait taux_endettement"},"State":"Generated","Roles":{"fait_taux_endettement":{"Target":{"Entity":"fait_taux_endettement"}},"fait_taux_endettement.date":{"Target":{"Entity":"fait_taux_endettement.date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_taux_endettement"},"Object":{"Role":"fait_taux_endettement.date"}},"State":"Generated","Weight":0.99,"ID":"fait_taux_endettements_have_dates"}]},"fait_parc_immobilier_has_n_logements_vacant":{"Binding":{"ConceptualEntity":"Fait parc_immobilier"},"State":"Generated","Roles":{"fait_parc_immobilier":{"Target":{"Entity":"fait_parc_immobilier"}},"fait_parc_immobilier.n_logements_vacant":{"Target":{"Entity":"fait_parc_immobilier.n_logements_vacant"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_parc_immobilier"},"Object":{"Role":"fait_parc_immobilier.n_logements_vacant"}},"State":"Generated","Weight":0.99,"ID":"fait_parc_immobiliers_have_n_logements_vacant"}]},"fait_vente_has_fait_loyer_loyer_moyen_global":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_loyer.loyer_moyen_global":{"Target":{"Entity":"fait_loyer.loyer_moyen_global"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_loyer.loyer_moyen_global"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_loyer_moyen_global"}]},"fait_loyer_has_loyer_moyen_global":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"fait_loyer.loyer_moyen_global":{"Target":{"Entity":"fait_loyer.loyer_moyen_global"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"fait_loyer.loyer_moyen_global"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_moyen_global"}]},"fait_loyer_has_loyer_m_2_maison":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"fait_loyer.loyer_m_2_maison":{"Target":{"Entity":"fait_loyer.loyer_m_2_maison"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"fait_loyer.loyer_m_2_maison"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_m_2_maison"}]},"fait_loyer_has_loyer_m_2_appartement":{"Binding":{"ConceptualEntity":"Fait Loyers"},"State":"Generated","Roles":{"fait_loyer":{"Target":{"Entity":"fait_loyer"}},"fait_loyer.loyer_m_2_appartement":{"Target":{"Entity":"fait_loyer.loyer_m_2_appartement"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_loyer"},"Object":{"Role":"fait_loyer.loyer_m_2_appartement"}},"State":"Generated","Weight":0.99,"ID":"fait_loyers_have_loyer_m_2_appartements"}]},"dim_IRL_has_irl":{"Binding":{"ConceptualEntity":"Dim IRL"},"State":"Generated","Roles":{"dim_IRL":{"Target":{"Entity":"dim_IRL"}},"dim_IRL.irl":{"Target":{"Entity":"dim_IRL.irl"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_IRL"},"Object":{"Role":"dim_IRL.irl"}},"State":"Generated","Weight":0.99,"ID":"dim_IRLs_have_irls"}]},"fait_foyers_fiscaux_has_montant_impot_moyen":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"fait_foyers_fiscaux.montant_impot_moyen":{"Target":{"Entity":"fait_foyers_fiscaux.montant_impot_moyen"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"fait_foyers_fiscaux.montant_impot_moyen"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_montant_impot_moyens"}]},"fait_foyers_fiscaux_has_revenu_fiscal_moyen":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"fait_foyers_fiscaux.revenu_fiscal_moyen":{"Target":{"Entity":"fait_foyers_fiscaux.revenu_fiscal_moyen"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"fait_foyers_fiscaux.revenu_fiscal_moyen"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_revenu_fiscal_moyens"}]},"fait_foyers_fiscaux_has_n_foyers_fiscaux":{"Binding":{"ConceptualEntity":"Fait Foyers Fiscaux"},"State":"Generated","Roles":{"fait_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux"}},"fait_foyers_fiscaux.n_foyers_fiscaux":{"Target":{"Entity":"fait_foyers_fiscaux.n_foyers_fiscaux"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_foyers_fiscaux"},"Object":{"Role":"fait_foyers_fiscaux.n_foyers_fiscaux"}},"State":"Generated","Weight":0.99,"ID":"fait_foyers_fiscauxes_have_n_foyers_fiscauxes"}]},"fait_vente_has_longitude":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.longitude":{"Target":{"Entity":"fait_vente.longitude"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.longitude"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_longitudes"}]},"fait_vente_has_latitude":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.latitude":{"Target":{"Entity":"fait_vente.latitude"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.latitude"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_latitudes"}]},"fait_vente_has_ID_parcelle_cadastre":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.ID_parcelle_cadastre":{"Target":{"Entity":"fait_vente.ID_parcelle_cadastre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.ID_parcelle_cadastre"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_ID_parcelle_cadastres"}]},"fait_vente_has_surface_habitable":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.surface_habitable":{"Target":{"Entity":"fait_vente.surface_habitable"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.surface_habitable"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_surface_habitable"}]},"fait_vente_has_nombres_piéce":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.nombres_piéce":{"Target":{"Entity":"fait_vente.nombres_piéce"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.nombres_piéce"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_nombres_piéces"}]},"fait_vente_has_vefa":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.vefa":{"Target":{"Entity":"fait_vente.vefa"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.vefa"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_vefas"}]},"fait_vente_has_type_batiment":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.type_batiment":{"Target":{"Entity":"fait_vente.type_batiment"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.type_batiment"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_type_batiments"}]},"fait_vente_has_adresse":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.adresse":{"Target":{"Entity":"fait_vente.adresse"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.adresse"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_adresses"}]},"fait_vente_has_code_postal":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.code_postal":{"Target":{"Entity":"fait_vente.code_postal"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.code_postal"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_code_postal"}]},"fait_vente_has_prix":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.prix":{"Target":{"Entity":"fait_vente.prix"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.prix"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_prix"}]},"fait_vente_has_ID_transaction":{"Binding":{"ConceptualEntity":"Fait_Ventes"},"State":"Generated","Roles":{"fait_vente":{"Target":{"Entity":"fait_vente"}},"fait_vente.ID_transaction":{"Target":{"Entity":"fait_vente.ID_transaction"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"fait_vente"},"Object":{"Role":"fait_vente.ID_transaction"}},"State":"Generated","Weight":0.99,"ID":"fait_ventes_have_ID_transactions"}]},"dim_date_date_hiérarchie_de_date_has_dim_date_date_jour":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.hiérarchie_de_date":{"Target":{"Entity":"dim_date.date.hiérarchie_de_date"}},"dim_date.date.jour":{"Target":{"Entity":"dim_date.date.jour"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.hiérarchie_de_date"},"Object":{"Role":"dim_date.date.jour"}},"State":"Generated","Weight":0.99,"ID":"hiérarchie_de_dates_have_jour"}]},"dim_date_date_année_has_dim_date_date_trimestre":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.année":{"Target":{"Entity":"dim_date.date.année"}},"dim_date.date.trimestre":{"Target":{"Entity":"dim_date.date.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.année"},"Object":{"Role":"dim_date.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"années_have_trimestres"},{"Attribute":{"Subject":{"Role":"dim_date.date.trimestre"},"Object":{"Role":"dim_date.date.année"}},"State":"Generated","Weight":0.99,"ID":"trimestres_have_années"},{"Preposition":{"Subject":{"Role":"dim_date.date.trimestre"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"dim_date.date.année"}},"State":"Generated","Weight":0.99,"ID":"trimestres_are_in_années"}]},"dim_date_date_trimestre_has_dim_date_date_mois":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.trimestre":{"Target":{"Entity":"dim_date.date.trimestre"}},"dim_date.date.mois":{"Target":{"Entity":"dim_date.date.mois"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.trimestre"},"Object":{"Role":"dim_date.date.mois"}},"State":"Generated","Weight":0.99,"ID":"trimestres_have_moises"},{"Attribute":{"Subject":{"Role":"dim_date.date.mois"},"Object":{"Role":"dim_date.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"moises_have_trimestres"},{"Preposition":{"Subject":{"Role":"dim_date.date.mois"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"dim_date.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"moises_are_in_trimestres"}]},"dim_date_date_mois_has_dim_date_date_jour":{"Binding":{"ConceptualEntity":"Dim Date"},"State":"Generated","Roles":{"dim_date.date.mois":{"Target":{"Entity":"dim_date.date.mois"}},"dim_date.date.jour":{"Target":{"Entity":"dim_date.date.jour"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"dim_date.date.mois"},"Object":{"Role":"dim_date.date.jour"}},"State":"Generated","Weight":0.99,"ID":"moises_have_jour"},{"Attribute":{"Subject":{"Role":"dim_date.date.jour"},"Object":{"Role":"dim_date.date.mois"}},"State":"Generated","Weight":0.99,"ID":"jour_have_moises"},{"Preposition":{"Subject":{"Role":"dim_date.date.jour"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"dim_date.date.mois"}},"State":"Generated","Weight":0.99,"ID":"jour_are_in_moises"}]}},"Agents":{"Internal":{"Version":"1.1.0"}}}
+				contentType: json
+
+		expression 'liste-dpt-drom-com-v1 2' =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\liste-dpt-drom-com-v1.2.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"code", type text}, {"type", type text}, {"nom", type text}, {"chefLieu", type text}, {"region", type text}, {"debutValidite", type date}, {"finValidite", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"finValidite", "debutValidite", "type"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Colonnes supprimées", each [region] <> null and [region] <> ""),
+				    #"Colonnes supprimées1" = Table.RemoveColumns(#"Lignes filtrées",{"chefLieu"})
+				in
+				    #"Colonnes supprimées1"
+			lineageTag: e878236b-962a-4d3f-b2d3-c96109c61161
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		annotation __PBI_TimeIntelligenceEnabled = 1
+
+		annotation PBI_QueryOrder = ["Fait_Ventes","Fait Foyers Fiscaux","Fait Loyers","Fait parc_immobilier","Fait taux_endettement","Fait taux_interet","Fait Emprunts","Dim IRL","Dim Date","Dim Géographie","Mesures","liste-dpt-drom-com-v1 2"]
+
+		annotation PBI_ProTooling = ["MCP-PBIModeling","TMDLView_Desktop"]
+

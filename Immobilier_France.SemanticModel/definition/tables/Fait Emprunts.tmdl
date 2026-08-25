@@ -1,0 +1,45 @@
+table 'Fait Emprunts'
+	lineageTag: 9de1f851-b409-40fd-b98d-181e142cce87
+
+	column date
+		dataType: dateTime
+		formatString: dd/mm/yy
+		lineageTag: 63b98ed3-0918-42be-9c78-41bb12d32813
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column emprunts_M€
+		dataType: int64
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: 77c23e03-5350-4fc8-9827-b350a8f97044
+		summarizeBy: sum
+		sourceColumn: emprunts_M€
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fait Emprunts' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\flux_nouveaux_emprunts.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"date", type date}, {"emprunts_M€", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

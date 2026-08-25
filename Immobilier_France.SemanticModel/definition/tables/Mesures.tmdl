@@ -1,0 +1,252 @@
+table Mesures
+	lineageTag: 9cea211c-ef31-4708-97af-a2df1b78f37b
+
+	measure 'Surface Habitable Moyenne' = AVERAGE(Fait_Ventes[Surface Habitable])
+		formatString: 0
+		lineageTag: f9a7b29a-96a5-4f0c-8053-cf76cbc0bce3
+
+	measure 'Prix Moyen' = AVERAGE(Fait_Ventes[Prix])
+		formatString: #,0
+		lineageTag: 44fa75ca-95e7-4e18-9ceb-2d060443a2f1
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Nombres Ventes' = COUNTROWS(Fait_Ventes)
+		formatString: 0
+		lineageTag: e981994e-6734-4317-a0c0-490bef68ffef
+
+	measure 'Emprunt Moyen' = AVERAGE('Fait Emprunts'[emprunts_M€])
+		formatString: #,0.00 "M€"
+		lineageTag: 14b6866e-b823-46b2-8fd9-f5d0eca95a21
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Montant Impot Moyen' = AVERAGE('Fait Foyers Fiscaux'[montant_impot_moyen])
+		formatString: "€" #,0
+		lineageTag: 0e0db720-107f-4a97-b35c-d756ef3204ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nombre Foyer Fiscaux' = SUM('Fait Foyers Fiscaux'[n_foyers_fiscaux])
+		formatString: #,0
+		lineageTag: 6b254bf7-1bdc-4e3a-b66c-f1e0eb3eb85d
+
+	measure 'Moyenne IRL' = AVERAGE('Dim IRL'[IRL])
+		formatString: #,0.00
+		lineageTag: 6b619be6-1747-413e-bb36-792e44340873
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Max m2 Appartement' = MAX('Fait Loyers'[loyer_m2_appartement])
+		formatString: #,0.00 "€/m²"
+		lineageTag: 0faeddb5-0fcf-4eae-acb7-b1e4312c01cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Max m2 Maison' = MAX('Fait Loyers'[loyer_m2_maison])
+		formatString: #,0.00 "€/m²"
+		lineageTag: f34c2a17-43cb-416d-ae60-3c2ab90b7195
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Min m2 Appartement' = MIN('Fait Loyers'[loyer_m2_appartement])
+		formatString: #,0.00 "€/m²"
+		lineageTag: 47c36658-4bad-40d0-89ac-8370bbe5e2ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Min m2 Maison' = MIN('Fait Loyers'[loyer_m2_maison])
+		formatString: #,0.00 "€/m²"
+		lineageTag: 5d151329-7ddc-40a5-a9b3-14797a57853a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Moyen m2 Appartement' = AVERAGE('Fait Loyers'[loyer_m2_appartement])
+		formatString: #,0.00 "€/m²"
+		lineageTag: dc11f88b-6cf1-4248-85b8-8ce701bbbbf4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Loyer Moyen m2 Maison' = AVERAGE('Fait Loyers'[loyer_m2_maison])
+		formatString: #,0.00 "€/m²"
+		lineageTag: 60aed08e-d5ea-423b-8996-5126dc407cab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prix Moyen m2' = DIVIDE(SUM(Fait_Ventes[Prix]),SUM(Fait_Ventes[Surface Habitable]), 0)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: 8fecd6fd-4ae6-4049-af71-b8cd66a9a6f3
+
+	measure 'Moyenne Taux Endettement %' = ```
+			
+			CALCULATE(
+			    AVERAGE('Fait taux_endettement'[taux_endettement]), 
+			    ALL('Dim Géographie')
+			)
+			```
+		formatString: 0.00\ "%"
+		lineageTag: 663b29ca-571d-4544-943f-2e904c29444c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne Taux Interet' = AVERAGE('Fait taux_interet'[taux])
+		formatString: 0.00\ "%"
+		lineageTag: 1c3d39b1-b41a-4e0c-bef1-4fdb0327ebaf
+
+	measure 'Moyenne Logement Vacant' = AVERAGE('Fait parc_immobilier'[n_logements_vacants])
+		formatString: #,0
+		lineageTag: 4f880ce9-0a46-4ec7-afd0-e689373e8185
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Evolution Prix m2 %' = VAR PrixAnneePrecedente = CALCULATE([Prix Moyen m2], SAMEPERIODLASTYEAR('Dim Date'[Date])) RETURN DIVIDE([Prix Moyen m2] - PrixAnneePrecedente, PrixAnneePrecedente, 0)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 1876e9ae-0116-47c7-8c1d-6b895ef2b7fc
+
+	measure 'Moyenne Taux Interet %' =
+			
+			CALCULATE(
+			    AVERAGE('Fait taux_interet'[taux]),
+			    ALL('Dim Géographie')
+			)
+		formatString: 0.00\ "%"
+		lineageTag: cbaeab0b-d50b-4812-b744-2a426471b675
+
+	measure 'CA Total' = SUM(Fait_Ventes[Prix])
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: 9e30e8db-95e3-42f4-adc4-d5d72bc34bac
+
+	measure 'Couleur Dynamique' =
+			
+			VAR mesure = SELECTEDVALUE('Mesure sélectionner'[Mesure sélectionner Commande])
+			RETURN
+			SWITCH(
+			    mesure,
+			    0, "#56C960",
+			    1, "#329D9C",
+			    2, "#9FD3C7"
+			)
+		lineageTag: 6721293e-e9c8-47da-9f70-a89063e02f76
+
+	measure 'Liste des valeurs de Région' =
+			
+			VAR __DISTINCT_VALUES_COUNT = DISTINCTCOUNT('Dim Géographie'[Région])
+			VAR __MAX_VALUES_TO_SHOW = 3
+			RETURN
+				"Analyse des ventes pour la région " & IF(
+					__DISTINCT_VALUES_COUNT > __MAX_VALUES_TO_SHOW,
+					CONCATENATE(
+						CONCATENATEX(
+							TOPN(
+								__MAX_VALUES_TO_SHOW,
+								VALUES('Dim Géographie'[Région]),
+								'Dim Géographie'[Région],
+								ASC
+							),
+							'Dim Géographie'[Région],
+							", ",
+							'Dim Géographie'[Région],
+							ASC
+						),
+						",  etc."
+					),
+					CONCATENATEX(
+						VALUES('Dim Géographie'[Région]),
+						'Dim Géographie'[Région],
+						", ",
+						'Dim Géographie'[Région],
+						ASC
+					)
+				)
+		lineageTag: c5cedb34-4e68-4980-a91a-583fa6c07a8e
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "ConcatenateValues"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Liste des valeurs de Nom Département' =
+			
+			VAR __DISTINCT_VALUES_COUNT = DISTINCTCOUNT('Dim Géographie'[Département])
+			VAR __MAX_VALUES_TO_SHOW = 3
+			RETURN
+				IF(
+					__DISTINCT_VALUES_COUNT > __MAX_VALUES_TO_SHOW,
+					CONCATENATE(
+						CONCATENATEX(
+							TOPN(
+								__MAX_VALUES_TO_SHOW,
+								VALUES('Dim Géographie'[Département]),
+								'Dim Géographie'[Département],
+								ASC
+							),
+							'Dim Géographie'[Département],
+							", ",
+							'Dim Géographie'[Département],
+							ASC
+						),
+						",  etc."
+					),
+					CONCATENATEX(
+						VALUES('Dim Géographie'[Département]),
+						'Dim Géographie'[Département],
+						", ",
+						'Dim Géographie'[Département],
+						ASC
+					)
+				)
+		lineageTag: 51eacfbe-d19a-4555-8de7-f29671d26e26
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "ConcatenateValues"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Titre Dynamique Complet' =
+			
+			VAR __MAX_VALUES_TO_SHOW = 3
+			
+			-- Logique pour les Régions
+			VAR __DISTINCT_REGIONS = DISTINCTCOUNT('Dim Géographie'[Région])
+			VAR __REGION_TEXT = IF(__DISTINCT_REGIONS > __MAX_VALUES_TO_SHOW,
+			    CONCATENATEX(TOPN(__MAX_VALUES_TO_SHOW, VALUES('Dim Géographie'[Région])), 'Dim Géographie'[Région], ", ") & ", etc.",
+			    CONCATENATEX(VALUES('Dim Géographie'[Région]), 'Dim Géographie'[Région], ", ")
+			)
+			
+			-- Logique pour les Départements
+			VAR __DISTINCT_DEPT = DISTINCTCOUNT('Dim Géographie'[Département])
+			VAR __DEPT_TEXT = IF(__DISTINCT_DEPT > __MAX_VALUES_TO_SHOW,
+			    CONCATENATEX(TOPN(__MAX_VALUES_TO_SHOW, VALUES('Dim Géographie'[Département])), 'Dim Géographie'[Département], ", ") & ", etc.",
+			    CONCATENATEX(VALUES('Dim Géographie'[Département]), 'Dim Géographie'[Département], ", ")
+			)
+			
+			RETURN
+			"Analyse pour la région : " & __REGION_TEXT & " | Département(s) : " & __DEPT_TEXT
+		lineageTag: bee53d2d-f6f0-4e27-aded-0ccd6a34c094
+
+	/// Couleur conditionnelle pour le graphique barres divergentes : vert si hausse, rouge si baisse
+	measure 'Couleur Evolution Prix m2' = IF([Evolution Prix m2 %] >= 0, "#1D9E75", "#E24B4A")
+		lineageTag: e9c1c14b-0f95-4183-8689-999ef00c4569
+
+	measure 'Surface Habitable' = SUM(Fait_Ventes[Surface Habitable])
+		formatString: #,0
+		lineageTag: 6eb84539-f521-4b98-ac58-b490a0a1f805
+
+	partition Mesures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+				    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Colonne 1", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Colonne 1"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_ResultType = Table
+

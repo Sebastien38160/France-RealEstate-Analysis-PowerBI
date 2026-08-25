@@ -1,0 +1,32 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Fait_Ventes","Fait Foyers Fiscaux","Fait Loyers","Fait parc_immobilier","Fait taux_endettement","Fait taux_interet","Fait Emprunts","Dim IRL","Dim Date","Dim Géographie","Mesures","Dim Départements"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","TMDLView_Desktop","DevMode"]
+
+ref table Fait_Ventes
+ref table 'Fait Foyers Fiscaux'
+ref table 'Dim IRL'
+ref table 'Fait Loyers'
+ref table 'Fait parc_immobilier'
+ref table 'Fait taux_endettement'
+ref table 'Fait taux_interet'
+ref table 'Fait Emprunts'
+ref table 'Dim Date'
+ref table Mesures
+ref table 'Mesure sélectionner'
+ref table 'Mesure sélectionner2'
+ref table Paramètre
+ref table 'Dim Départements'
+ref table 'Dim Géographie'
+
+ref cultureInfo fr-FR
+

@@ -1,0 +1,52 @@
+relationship a94221a6-1408-9f81-5471-b3400337190a
+	fromColumn: Fait_Ventes.'Date Transaction'
+	toColumn: 'Dim Date'.Date
+
+relationship fa7d2fe9-1c9a-0eef-4f25-082c49f15287
+	fromColumn: 'Fait Emprunts'.date
+	toColumn: 'Dim Date'.Date
+
+relationship edb8faec-419a-86c0-4db7-b6caa80a49a7
+	fromColumn: 'Dim IRL'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship 262a5744-ff0d-1c84-ffb7-95892d9b2833
+	fromColumn: 'Fait Foyers Fiscaux'.date
+	toColumn: 'Dim Date'.Date
+
+relationship 5d3ef2db-f493-5873-689a-ea33b46b3ebe
+	fromColumn: 'Fait Loyers'.date
+	toColumn: 'Dim Date'.Date
+
+relationship 69341062-4eca-1ca1-c99a-475ae9123642
+	fromColumn: 'Fait parc_immobilier'.date
+	toColumn: 'Dim Date'.Date
+
+relationship 40adfcb8-0e73-e3ab-b3a1-5b9717a150b8
+	fromColumn: 'Fait taux_interet'.date
+	toColumn: 'Dim Date'.Date
+
+relationship 67144cef-ac3c-00ff-ca53-02ace653c655
+	fromColumn: 'Fait taux_endettement'.date
+	toColumn: 'Dim Date'.Date
+
+relationship AutoDetected_5b0cca7e-fc10-43fd-87d7-c0ffe61fb220
+	fromColumn: 'Dim Géographie'.Département
+	toColumn: 'Dim Départements'.Département
+
+relationship AutoDetected_e24847a6-a063-44f1-951a-1eb77e9c52c4
+	fromColumn: Fait_Ventes.'Code INSEE'
+	toColumn: 'Dim Géographie'.'Code INSEE'
+
+relationship AutoDetected_496f831a-9729-43ec-8023-a7f6334bc190
+	fromColumn: 'Fait Foyers Fiscaux'.'Code INSEE'
+	toColumn: 'Dim Géographie'.'Code INSEE'
+
+relationship AutoDetected_0bd8729a-8889-439b-9da2-e5985deed443
+	fromColumn: 'Fait Loyers'.'Code INSEE'
+	toColumn: 'Dim Géographie'.'Code INSEE'
+
+relationship AutoDetected_da869c41-1fba-4b7b-9e21-82606e5d0c9e
+	fromColumn: 'Fait parc_immobilier'.'Code INSEE'
+	toColumn: 'Dim Géographie'.'Code INSEE'
+

@@ -1,0 +1,79 @@
+table 'Fait Loyers'
+	lineageTag: 27d531a0-7270-4ffd-9219-d1d9950807a6
+
+	measure 'Loyer Moyen Global' =
+			
+			VAR TypeSelectionne = SELECTEDVALUE('Fait_Ventes'[Type Batiment])
+			RETURN
+			SWITCH(
+			    TypeSelectionne,
+			    "Appartement", [Loyer Moyen m2 Appartement],
+			    "Maison", [Loyer Moyen m2 Maison],
+			    ([Loyer Moyen m2 Appartement] + [Loyer Moyen m2 Maison]) / 2
+			)
+		lineageTag: 8e7c388e-a77f-4bdd-b6f9-277c9155ca40
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 789ea74a-1b5f-40c0-a7c9-c3d21436fdbd
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column loyer_m2_appartement
+		dataType: double
+		lineageTag: b5189324-28ca-4623-9bda-9e044e2989c1
+		summarizeBy: average
+		sourceColumn: loyer_m2_appartement
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loyer_m2_maison
+		dataType: double
+		lineageTag: 1a64fed2-78aa-440f-a095-3f8fa9f79a1f
+		summarizeBy: average
+		sourceColumn: loyer_m2_maison
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Code INSEE'
+		dataType: string
+		lineageTag: 5eaf390e-6f0f-434a-902f-14971c889278
+		summarizeBy: none
+		sourceColumn: Code INSEE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fait Loyers' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\sebas\Downloads\archive (5)\loyers.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Promu = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Txt = Table.TransformColumnTypes(Promu, {{"departement", type text},{"id_ville", type text},{"date", Int64.Type},{"loyer_m2_appartement", type text},{"loyer_m2_maison", type text}}),
+				    Code = Table.AddColumn(Txt, "Code INSEE", each Text.Start(Text.PadStart([departement],2,"0"),2) & Text.PadStart([id_ville],3,"0"), type text),
+				    Nombres = Table.TransformColumnTypes(Code, {{"loyer_m2_appartement", type number},{"loyer_m2_maison", type number}}, "en-US"),
+				    Arrondi = Table.TransformColumns(Nombres, {{"loyer_m2_appartement", each Number.Round(_,2), type number},{"loyer_m2_maison", each Number.Round(_,2), type number}}),
+				    DateAnnee = Table.TransformColumns(Arrondi, {{"date", each if _ = null then null else #date(_,1,1), type date}}),
+				    Nettoyage = Table.RemoveColumns(DateAnnee, {"departement","ville","id_ville"}),
+				    Valides = Table.SelectRows(Nettoyage, each [Code INSEE] <> null and [date] <> null)
+				in
+				    Valides
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

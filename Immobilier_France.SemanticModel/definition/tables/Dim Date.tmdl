@@ -1,0 +1,73 @@
+table 'Dim Date'
+	lineageTag: 9dc89475-3cc4-4209-b5e6-227e425736ed
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yy
+		lineageTag: c4107452-7eb8-4a1c-b1d4-bf6f85526153
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: 912ad44b-2e17-4b34-a98a-ff48a7b390eb
+		summarizeBy: none
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = User
+
+	column 'Mois Num'
+		dataType: int64
+		formatString: 0
+		lineageTag: e518b54a-f827-411e-a7ae-9c5699243353
+		summarizeBy: none
+		sourceColumn: Mois Num
+
+		annotation SummarizationSetBy = User
+
+	column 'Nom Mois'
+		dataType: string
+		lineageTag: 3cad4a67-440b-4f17-8057-2500ac2c670a
+		summarizeBy: none
+		sourceColumn: Nom Mois
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		dataType: string
+		lineageTag: d09aa73e-4149-4bd0-991c-04654fcbbced
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Date' = m
+		mode: import
+		source =
+				let
+				    Debut = #date(2002, 1, 1),
+				    Fin = #date(2026, 12, 31),
+				    Source = List.Dates(Debut, Duration.Days(Fin - Debut) + 1, #duration(1, 0, 0, 0)),
+				    Tableau = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    Renommer = Table.RenameColumns(Tableau,{{"Column1", "Date"}}),
+				    TypeDate = Table.TransformColumnTypes(Renommer,{{"Date", type date}}),
+				    Annee = Table.AddColumn(TypeDate, "Année", each Date.Year([Date]), Int64.Type),
+				    MoisNum = Table.AddColumn(Annee, "Mois Num", each Date.Month([Date]), Int64.Type),
+				    NomMois = Table.AddColumn(MoisNum, "Nom Mois", each Date.MonthName([Date]), type text),
+				    Trimestre = Table.AddColumn(NomMois, "Trimestre", each "T" & Text.From(Date.QuarterOfYear([Date])), type text)
+				in
+				    Trimestre
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
