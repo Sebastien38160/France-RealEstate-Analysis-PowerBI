@@ -38,7 +38,7 @@ valeur immobilière rapportée à la surface.
 
 ---
 
-#   #       L   e       m   o   d 303 250   l   e  \n
+# Le model
 
 Schéma en étoile : 15 tables, 13 relations, toutes en « plusieurs vers un » et
 unidirectionnelles. Deux dimensions conformes, `Dim Date` et `Dim Géographie`, partagées par
