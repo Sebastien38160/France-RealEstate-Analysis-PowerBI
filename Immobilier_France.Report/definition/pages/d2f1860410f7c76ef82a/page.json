@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d2f1860410f7c76ef82a",
+  "displayName": "Infobulle",
+  "displayOption": "ActualSize",
+  "height": 240,
+  "width": 320,
+  "type": "Tooltip"
+}

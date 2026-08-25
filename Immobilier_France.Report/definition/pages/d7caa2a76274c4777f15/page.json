@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d7caa2a76274c4777f15",
+  "displayName": "Contexte Economique",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "041bc246fabd5dd11117",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#181735'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "cadd2257de514b16e78e",
+      "target": "e0606186353a49e1405e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e0606186353a49e1405e",
+      "target": "806184b710ebeda3fa99",
+      "type": "DataFilter"
+    },
+    {
+      "source": "806184b710ebeda3fa99",
+      "target": "e0606186353a49e1405e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e0606186353a49e1405e",
+      "target": "cadd2257de514b16e78e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "806184b710ebeda3fa99",
+      "target": "cadd2257de514b16e78e",
+      "type": "DataFilter"
+    }
+  ]
+}

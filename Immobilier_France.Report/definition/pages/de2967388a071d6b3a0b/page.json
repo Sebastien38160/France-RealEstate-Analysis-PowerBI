@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "de2967388a071d6b3a0b",
+  "displayName": "Analyse des Ventes",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#181735'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "689020b4a78494e68cc2",
+      "target": "345784150c0087b7b75c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "345784150c0087b7b75c",
+      "target": "689020b4a78494e68cc2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "345784150c0087b7b75c",
+      "target": "62417d6040b4d16821bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "689020b4a78494e68cc2",
+      "target": "62417d6040b4d16821bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2e952f781991e4b8aa31",
+      "target": "62417d6040b4d16821bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2e952f781991e4b8aa31",
+      "target": "689020b4a78494e68cc2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ad694cce098885569846",
+      "target": "62417d6040b4d16821bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ad694cce098885569846",
+      "target": "689020b4a78494e68cc2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ad694cce098885569846",
+      "target": "2e952f781991e4b8aa31",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ad694cce098885569846",
+      "target": "345784150c0087b7b75c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3497c83508258c0452c1",
+      "target": "689020b4a78494e68cc2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3497c83508258c0452c1",
+      "target": "345784150c0087b7b75c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "345784150c0087b7b75c",
+      "target": "ad694cce098885569846",
+      "type": "DataFilter"
+    },
+    {
+      "source": "62417d6040b4d16821bd",
+      "target": "ad694cce098885569846",
+      "type": "DataFilter"
+    },
+    {
+      "source": "62417d6040b4d16821bd",
+      "target": "689020b4a78494e68cc2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "62417d6040b4d16821bd",
+      "target": "345784150c0087b7b75c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2e952f781991e4b8aa31",
+      "target": "ad694cce098885569846",
+      "type": "DataFilter"
+    }
+  ]
+}
